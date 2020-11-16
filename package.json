@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "build-ci": "webpack --config webpack.config.js --env.prod",
-    "build-release": "webpack --config webpack.config.js --env.prod --display-modules",
+    "build-ci": "webpack --config webpack.config.js --env prod",
+    "build-release": "webpack --config webpack.config.js --env prod",
     "start": "sudo webpack serve"
   },
   "author": "",
