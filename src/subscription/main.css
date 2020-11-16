@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&display=swap");
+
+body {
+  font-family: "Fira Sans", sans-serif;
+}
+
+.form {
+  display: flex;
+  overflow: visible;
+  font-family: "Fira Sans", sans-serif;
+}
+
+#alert {
+  color: #856404;
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+  padding-right: 4rem;
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+#alert .close {
+  width: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.75rem 1.25rem;
+  color: inherit;
+  background-color: transparent;
+  border: 0;
+  appearance: none;
+  float: right;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: 0.5;
+  text-transform: none;
+  overflow: visible;
+}
+
+input {
+  font-family: "Fira Sans", sans-serif;
+  height: calc(1.5em + 1rem + 2px);
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  border-radius: 0.3rem;
+  border: 1px solid #ced4da;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  overflow: visible;
+  width: 100%;
+}
+
+button {
+  cursor: pointer;
+  font-family: "Fira Sans", sans-serif;
+  background: #ffd731;
+  border-color: #ffd731;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #03101f;
+  padding: 0.5rem 1rem;
+  line-height: 1.5;
+  border-radius: 0.3rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  vertical-align: middle;
+  width: 100%;
+  border: 1px solid transparent;
+}
+
+button:hover {
+  opacity: 0.45;
+}
