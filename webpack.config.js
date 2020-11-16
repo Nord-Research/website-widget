@@ -7,6 +7,13 @@ const BUNDLE_OUTPUT_DIR = "./dist";
 
 module.exports = env => {
   const IS_DEV_BUILD = !(env && env.prod);
+  let keyFileSync = undefined,
+    certFileSync = undefined;
+
+  if (IS_DEV_BUILD) {
+    keyFileSync = fs.readFileSync("./ssl/findme.tinkerantreats.key");
+    certFileSync = fs.readFileSync("./ssl/findme.tinkerantreats.crt");
+  }
 
   return [
     {
@@ -15,10 +22,10 @@ module.exports = env => {
       devServer: {
         contentBase: BUNDLE_OUTPUT_DIR,
         allowedHosts: ["lp.nordresearch.com.br"],
-        port: 443,
-        https: true,
-        key: fs.readFileSync("./ssl/findme.tinkerantreats.key"),
-        cert: fs.readFileSync("./ssl/findme.tinkerantreats.crt")
+        port: IS_DEV_BUILD ? 443 : undefined,
+        https: IS_DEV_BUILD ? true : false,
+        key: keyFileSync,
+        cert: certFileSync
       },
       mode: IS_DEV_BUILD ? "development" : "production",
       module: {
