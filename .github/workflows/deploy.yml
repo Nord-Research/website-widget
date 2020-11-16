@@ -1,0 +1,36 @@
+name: Deploy
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: wyozi/download-gh-release-asset@900f478ec041a124be5d0baf555c9b9f0e04fca3
+        with:
+          args: widget.zip
+        env:
+          GITHUB_TOKEN: "${{ secrets.REPO_TOKEN }}"
+      - run: unzip -C widget widget.js -d website-widget
+
+      - name: S3 Upload
+        uses: jakejarvis/s3-sync-action@7ed8b112447abb09f1da74f3466e4194fc7a6311
+        with:
+          args: --acl public-read --follow-symlinks --delete
+        env:
+          SOURCE_DIR: "./website-widget"
+          AWS_REGION: "sa-east-1"
+          AWS_S3_BUCKET: nord-website-widget
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: Invalidate CDN
+        uses: chetan/invalidate-cloudfront-action@2d2d3f464dcae0bea80ceff79e89960bbac6a754
+        env:
+          DISTRIBUTION: E1GPIC4KV6YY8U
+          PATHS: "/nord-website-widget/widget.js"
+          AWS_REGION: "sa-east-1"
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
