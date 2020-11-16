@@ -6,8 +6,7 @@
   "scripts": {
     "build": "webpack --config webpack.config.js",
     "build-release": "webpack --config webpack.config.js --env.prod --display-modules",
-    "start": "sudo webpack serve",
-    "lint": "tslint --project tsconfig.json"
+    "start": "sudo webpack serve"
   },
   "author": "",
   "license": "ISC",
