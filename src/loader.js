@@ -43,6 +43,13 @@ export default (win, defaultConfig, scriptElement, render) => {
           win[`loaded-${instanceName}`] = true;
           break;
 
+        case "initAds":
+          wrappingElement.setAttribute("id", `${instanceName}-ads`);
+          render(wrappingElement, loadedObject, methodName);
+
+          win[`loaded-${instanceName}`] = true;
+          break;
+
         default:
           console.warn(`Unsupported method [${methodName}]`, item[1]);
       }

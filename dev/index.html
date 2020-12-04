@@ -5,7 +5,9 @@
   </head>
 
   <body>
-    <div id="mail-collector-form"></div>
+    <div id="mail-collector-for"></div>
+
+    <div id="ads-1"></div>
 
     <script>
       (function(w, d, s, o, f, js, fjs) {
@@ -25,6 +27,12 @@
       _nord("initSubscription", {
         container: "mail-collector-form",
         welcomeIdentifier: "aprenda-a-investir-com-a-nords"
+      });
+
+      _nord("initAds", {
+        container: "ads-1",
+        plan: "a",
+        medium: "mail"
       });
     </script>
   </body>
