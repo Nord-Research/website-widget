@@ -21,11 +21,13 @@ const Main = () => {
 
       let utmString = "?";
       const CONTENT = config.content || window.location.pathname || undefined;
+      const SOURCE = config.source || window.location.hostname || undefined;
 
+      if (SOURCE) utmString += "&utm_source=" + SOURCE;
       if (config.medium) utmString += "&utm_medium=" + config.medium;
       if (config.campaign) utmString += "&utm_campaign=" + config.campaign;
       if (config.term) utmString += "&utm_term=" + config.term;
-      if (CONTENT) utmString += "&utm_content=" + config.content;
+      if (CONTENT) utmString += "&utm_content=" + CONTENT;
       setUtm(utmString);
     })();
   }, []);
