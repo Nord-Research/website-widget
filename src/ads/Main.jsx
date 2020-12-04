@@ -20,10 +20,12 @@ const Main = () => {
       });
 
       let utmString = "?";
+      const CONTENT = config.content || window.location.pathname || undefined;
+
       if (config.medium) utmString += "&utm_medium=" + config.medium;
       if (config.campaign) utmString += "&utm_campaign=" + config.campaign;
       if (config.term) utmString += "&utm_term=" + config.term;
-      if (config.content) utmString += "&utm_content=" + config.content;
+      if (CONTENT) utmString += "&utm_content=" + config.content;
       setUtm(utmString);
     })();
   }, []);
