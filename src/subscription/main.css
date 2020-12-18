@@ -74,5 +74,9 @@ button {
 }
 
 button:hover {
-  opacity: 0.45;
+  opacity: 0.85;
+}
+
+button:active {
+  background: #d8b529;
 }

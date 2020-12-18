@@ -2,6 +2,7 @@ import { h, render } from "preact";
 import loader from "./loader";
 import { Subscription } from "./Subscription";
 import { Ads } from "./Ads";
+import { Leads } from "./Leads";
 
 loader(window, {}, window.document.currentScript, (el, config, component) => {
   switch (component) {
@@ -11,6 +12,10 @@ loader(window, {}, window.document.currentScript, (el, config, component) => {
 
     case "initAds":
       render(h(Ads, { ...config }), el);
+      break;
+
+    case "initLeads":
+      render(h(Leads, { ...config }), el);
       break;
 
     default:

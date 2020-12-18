@@ -7,13 +7,15 @@
   <body>
     <div id="mail-collector-for"></div>
 
-    <div id="ads-1"></div>
+    <div id="ads-"></div>
+
+    <div id="leads"></div>
 
     <script>
-      (function(w, d, s, o, f, js, fjs) {
+      (function (w, d, s, o, f, js, fjs) {
         w[o] =
           w[o] ||
-          function() {
+          function () {
             (w[o].q = w[o].q || []).push(arguments);
           };
         (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
@@ -26,13 +28,22 @@
 
       _nord("initSubscription", {
         container: "mail-collector-form",
-        welcomeIdentifier: "aprenda-a-investir-com-a-nords"
+        welcomeIdentifier: "aprenda-a-investir-com-a-nords",
       });
 
       _nord("initAds", {
         container: "ads-1",
         plan: "a",
-        medium: "mail"
+        medium: "mail",
+      });
+
+      _nord("initLeads", {
+        container: "leads",
+        medium: "landingpage",
+        name: true,
+        birthdate: true,
+        phone: true,
+        successUrl: "https://www.google.com/",
       });
     </script>
   </body>

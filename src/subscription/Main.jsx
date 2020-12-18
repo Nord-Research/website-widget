@@ -15,7 +15,7 @@ const Main = () => {
   const [loading, setLoading] = useState(false);
   const { Email, Senha, SenhaConferencia } = fields;
 
-  const handleChange = evt => {
+  const handleChange = (evt) => {
     const { target } = evt;
     const { id, value } = target;
 
@@ -27,24 +27,22 @@ const Main = () => {
     let additionalItems = [{ Chave: "URL", Valor: window.location.href }];
 
     ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"].map(
-      item => {
+      (item) => {
         if (!params.get(item)) return;
 
         additionalItems.push({
           Chave: item.substr(0, 10).toUpperCase(),
-          Valor: params.get(item)
+          Valor: params.get(item),
         });
       }
     );
-
-    console.log(additionalItems);
 
     try {
       var BODY = qs.stringify(
         {
           ...fields,
           Nome: fields.Email,
-          BoasVindasIdentificador: config.welcomeIdentifier
+          BoasVindasIdentificador: config.welcomeIdentifier,
         },
         { arrayFormat: "index" }
       );
@@ -60,8 +58,8 @@ const Main = () => {
         withCredentials: true,
         data: BODY,
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
       });
 
       if (data.sucesso === false) {

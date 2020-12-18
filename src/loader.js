@@ -7,14 +7,14 @@ export default (win, defaultConfig, scriptElement, render) => {
 
   if (!loaderObject || !loaderObject.q) {
     throw new Error(
-      `Widget didn't find LoaderObject for instance [${instanceName}]. 
+      `Widget didn't find LoaderObject for instance [${instanceName}].
       The loading script was either modified, no call to 'init' method was done  or there is no conflicting object defined in \`window.${instanceName}\`.`
     );
   }
 
   if (win[`loaded-${instanceName}`]) {
     throw new Error(
-      `Widget with name [${instanceName}] was already loaded. 
+      `Widget with name [${instanceName}] was already loaded.
       This means you have multiple instances with same identifier (e.g. '${DEFAULT_NAME}')`
     );
   }
@@ -24,7 +24,7 @@ export default (win, defaultConfig, scriptElement, render) => {
     const methodName = item[0];
     if (i === 0 && methodName !== "init") {
       throw new Error(
-        `Failed to start Widget [${instanceName}]. 
+        `Failed to start Widget [${instanceName}].
         'Init' must be called before other methods.`
       );
     } else if (i !== 0 && methodName === "init") {
@@ -45,6 +45,13 @@ export default (win, defaultConfig, scriptElement, render) => {
 
         case "initAds":
           wrappingElement.setAttribute("id", `${instanceName}-ads`);
+          render(wrappingElement, loadedObject, methodName);
+
+          win[`loaded-${instanceName}`] = true;
+          break;
+
+        case "initLeads":
+          wrappingElement.setAttribute("id", `${instanceName}-leads`);
           render(wrappingElement, loadedObject, methodName);
 
           win[`loaded-${instanceName}`] = true;
