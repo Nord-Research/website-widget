@@ -32,7 +32,8 @@ const Main = () => {
 
     try {
       setLoading(true);
-      await customersService.add(body);
+      console.log(body);
+      // await customersService.add(body);
       setSuccess(true);
       if (config.successUrl) window.location.href = config.successUrl;
     } catch (error) {
@@ -64,8 +65,8 @@ const Main = () => {
         {config.phone && (
           <input
             id="phone"
-            placeholder="Celular:"
-            type="phone"
+            placeholder="DDD+Celular"
+            type="tel"
             value={phone}
             onChange={handleChange}
           />
@@ -74,7 +75,7 @@ const Main = () => {
           <input
             id="birthdate"
             placeholder="Nascimento em:"
-            type="birthdate"
+            type="date"
             value={birthdate}
             onChange={handleChange}
           />

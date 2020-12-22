@@ -15,6 +15,7 @@ loader(window, {}, window.document.currentScript, (el, config, component) => {
       break;
 
     case "initLeads":
+      console.log("leads");
       render(h(Leads, { ...config }), el);
       break;
 
