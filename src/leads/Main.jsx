@@ -46,7 +46,9 @@ const Main = () => {
   if (success)
     return (
       <div class="lead-success">
-        <p>Excelente! A partir de agora você faz parte da Nord.</p>
+        <p style={{ margin: 0, padding: "15px 25px" }}>
+          Excelente! A partir de agora você faz parte da Nord.
+        </p>
       </div>
     );
 
