@@ -32,8 +32,7 @@ const Main = () => {
 
     try {
       setLoading(true);
-      console.log(body);
-      // await customersService.add(body);
+      await customersService.add(body);
       setSuccess(true);
       if (config.successUrl) window.location.href = config.successUrl;
     } catch (error) {
