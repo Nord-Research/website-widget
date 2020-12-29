@@ -1,6 +1,7 @@
 import { h } from "preact";
 import { useContext, useEffect, useState } from "preact/hooks";
 import { ConfigContext } from "../AppContext";
+import { adsService } from "../services";
 
 const Main = () => {
   const config = useContext(ConfigContext);
@@ -8,15 +9,18 @@ const Main = () => {
   const [utm, setUtm] = useState();
   const { url, image } = adsInfo || {
     url: "",
-    image: ""
+    image: "",
   };
 
   useEffect(() => {
     (async () => {
+      if (!config.id) return;
+
+      let { data: banner } = await adsService.details(config.id);
+
       setAdsInfo({
-        url: "https://www.nordresearch.com.br/",
-        image:
-          "https://ci3.googleusercontent.com/proxy/OEM61shGQ4mnn9bVDKa4dyWnibkJ5qRnHcyOEtfddF5tHjebH4ZYJGEbwVbID7AA4jJPwu1435wKb_QPSaX3mh9AairpzEMsY9wNixejUS-fcch7TAeHeBr6AawGvOb-Dvhk6zzkBF6wWqpb8sq6GP1fw9qPHw=s0-d-e1-ft#https://mcusercontent.com/7d6851130ee7e886a028957d9/images/b24a6f12-2077-4a04-be30-5a5b7f60fc8d.png"
+        url: config.url || banner.default_url || "#",
+        image: banner.image_path,
       });
 
       let utmString = "?";
@@ -31,6 +35,8 @@ const Main = () => {
       setUtm(utmString);
     })();
   }, []);
+
+  if (!image) return <div />;
 
   return (
     <a href={url.split("?")[0] + utm} target="_blank">
