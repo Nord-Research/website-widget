@@ -32,7 +32,7 @@ const Main = () => {
       if (SOURCE) utmString += "&utm_source=" + SOURCE;
       if (config.medium) utmString += "&utm_medium=" + config.medium;
       utmString +=
-        "&utm_campaign=" + config.campaign || banner.default_campaign;
+        "&utm_campaign=" + (config.campaign || banner.default_campaign);
       if (CONTENT) utmString += "&utm_content=" + CONTENT;
       setUtm(utmString);
     })();
