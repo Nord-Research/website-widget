@@ -14,9 +14,11 @@ const Main = () => {
 
   useEffect(() => {
     (async () => {
-      if (!config.id) return;
+      var result = {};
+      if (!config.id) result = await adsService.random();
+      else result = await adsService.details(config.id);
 
-      let { data: banner } = await adsService.details(config.id);
+      let { data: banner } = result;
 
       setAdsInfo({
         url: config.url || banner.default_url || "#",

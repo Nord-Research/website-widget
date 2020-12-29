@@ -14,6 +14,13 @@ const details = async (id) => {
   });
 };
 
+const random = async () => {
+  return await callApi({
+    url: `${HOSTS.PROD.API}/ads/random`,
+    method: "GET",
+  });
+};
+
 const callApi = async (request) => {
   return new Promise((resolve, reject) => {
     client
@@ -34,4 +41,5 @@ const callApi = async (request) => {
 
 export const adsService = {
   details,
+  random,
 };
