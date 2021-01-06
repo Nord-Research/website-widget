@@ -6,6 +6,7 @@ import { customersService } from "../services";
 import "./main.css";
 
 const Main = () => {
+  const params = new URLSearchParams(window.location.search);
   const config = useContext(ConfigContext);
   const [alert, setAlert] = useState(undefined);
   const [body, setBody] = useState({});
@@ -32,7 +33,28 @@ const Main = () => {
 
     try {
       setLoading(true);
-      await customersService.add(body);
+
+      var additionalItems = {};
+
+      [
+        "utm_source",
+        "utm_medium",
+        "utm_campaign",
+        "utm_term",
+        "utm_content",
+      ].map((item) => {
+        if (config[item]) additionalItems[item] = config[item];
+        if (params.get(item)) additionalItems[item] = params.get(item);
+      });
+
+      if (!additionalItems.utm_source)
+        additionalItems.utm_source = window.location.hostname;
+
+      await customersService.add({
+        ...body,
+        ...additionalItems,
+        url: window.location.href,
+      });
       setSuccess(true);
       if (config.successUrl) window.location.href = config.successUrl;
     } catch (error) {
