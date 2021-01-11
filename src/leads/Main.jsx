@@ -2,7 +2,7 @@ import { h } from "preact";
 import { useContext, useState } from "preact/hooks";
 import { ConfigContext } from "../AppContext";
 import Spacer from "../components/Spacer.jsx";
-import { customersService } from "../services";
+import { campaignsService, customersService } from "../services";
 import "./main.css";
 
 const Main = () => {
@@ -55,6 +55,15 @@ const Main = () => {
         ...additionalItems,
         url: window.location.href,
       });
+
+      if (config.report_url)
+        await campaignsService.sendReport({
+          email,
+          sender_name: config.sender_name,
+          report_url: config.report_url,
+          sender_email: config.sender_email,
+        });
+
       setSuccess(true);
       if (config.successUrl) window.location.href = config.successUrl;
     } catch (error) {
