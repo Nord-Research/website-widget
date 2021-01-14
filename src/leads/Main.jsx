@@ -79,7 +79,7 @@ const Main = () => {
     return (
       <div class="lead-success">
         <p style={{ margin: 0, padding: "15px 25px" }}>
-          Excelente! A partir de agora você faz parte da Nord.
+          Abra seu e-mail e aproveite o relatório!
         </p>
       </div>
     );
