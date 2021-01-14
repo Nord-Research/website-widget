@@ -56,6 +56,8 @@ const Main = () => {
         url: window.location.href,
       });
 
+      window.location.hash = "#receive-report";
+
       if (config.report_url)
         await campaignsService.sendReport({
           email,
