@@ -15,6 +15,14 @@ const sendReport = async (requestData) => {
   });
 };
 
+const sendWelcome = async (requestData) => {
+  return await callApi({
+    url: `${HOSTS.PROD.API}/campaigns/send-welcome-email`,
+    method: "POST",
+    requestData,
+  });
+};
+
 const callApi = async (request) => {
   return new Promise((resolve, reject) => {
     client
@@ -35,4 +43,5 @@ const callApi = async (request) => {
 
 export const campaignsService = {
   sendReport,
+  sendWelcome,
 };

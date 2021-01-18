@@ -56,13 +56,18 @@ const Main = () => {
         url: window.location.href,
       });
 
-      if (config.report_url)
+      if (config.report_url) {
         await campaignsService.sendReport({
           email,
           sender_name: config.sender_name,
           report_url: config.report_url,
           sender_email: config.sender_email,
         });
+      } else {
+        await campaignsService.sendWelcome({
+          email,
+        });
+      }
 
       setSuccess(true);
       if (config.successUrl) window.location.href = config.successUrl;
