@@ -31,10 +31,6 @@ const Main = () => {
       return;
     }
 
-    config.onSubscribe(email);
-
-    return;
-
     try {
       setLoading(true);
 
@@ -60,6 +56,8 @@ const Main = () => {
         url: window.location.href,
       });
 
+      config.onSubscribe(email);
+
       if (config.report_url) {
         await campaignsService.sendReport({
           email,
@@ -74,6 +72,7 @@ const Main = () => {
       }
 
       setSuccess(true);
+
       if (config.successUrl) window.location.href = config.successUrl;
     } catch (error) {
       console.log(error);
