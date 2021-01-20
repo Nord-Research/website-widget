@@ -31,6 +31,10 @@ const Main = () => {
       return;
     }
 
+    config.onSubscribe(email);
+
+    return;
+
     try {
       setLoading(true);
 
@@ -132,7 +136,7 @@ const Main = () => {
             <span aria-hidden="true">{alert}</span>
           </div>
         )}
-        <button onClick={submit}>
+        <button id="subscription-button" onClick={submit}>
           {loading ? "SALVANDO..." : "ACESSAR AGORA"}
         </button>
       </Spacer>
