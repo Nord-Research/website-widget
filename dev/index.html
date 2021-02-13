@@ -1,52 +1,71 @@
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Demo page of the widget</title>
-  </head>
 
-  <body>
-    <div id="mail-collector-for"></div>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Demo page of the widget</title>
+</head>
 
-    <div id="ads-1"></div>
+<body>
+  <div id="mail-collector-for"></div>
 
-    <div id="leads"></div>
+  <div id="ads-1"></div>
 
-    <script>
-      (function (w, d, s, o, f, js, fjs) {
-        w[o] =
-          w[o] ||
-          function () {
-            (w[o].q = w[o].q || []).push(arguments);
-          };
-        (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
-        js.id = o;
-        js.src = f;
-        js.async = 1;
-        fjs.parentNode.insertBefore(js, fjs);
-      })(window, document, "script", "_nord", "./widget.js");
-      _nord("init");
+  <div id="leads"></div>
 
-      _nord("initSubscription", {
-        container: "mail-collector-form",
-        welcomeIdentifier: "aprenda-a-investir-com-a-nords",
-      });
+  <script>
+    (function (w, d, s, o, f, js, fjs) {
+      w[o] =
+        w[o] ||
+        function () {
+          (w[o].q = w[o].q || []).push(arguments);
+        };
+      (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
+      js.id = o;
+      js.src = f;
+      js.async = 1;
+      fjs.parentNode.insertBefore(js, fjs);
+    })(window, document, "script", "_nord", "./widget.js");
+    _nord("init");
 
-      _nord("initAds", {
-        container: "ads-1",
-      });
+    _nord("initSubscription", {
+      container: "mail-collector-form",
+      welcomeIdentifier: "aprenda-a-investir-com-a-nords",
+    });
 
-      _nord("initLeads", {
-        container: "leads",
-        utm_medium: "landing-page",
-        utm_campaign: "something-happening",
-        name: false,
-        birthdate: true,
-        phone: true,
-        plan: "nord-advisor",
-        onSubscribe: (value) => {
-          console.log("foi", value);
+    _nord("initAds", {
+      container: "ads-1",
+    });
+
+    _nord("initLeads", {
+      container: "leads",
+      utm_medium: "landing-page",
+      utm_campaign: "something-happening",
+      name: false,
+      birthdate: true,
+      phone: true,
+      plan: "nord-advisor",
+      leads: {
+        container: {
+          styles: {
+            direction: 'horizontal',
+          }
         },
-      });
-    </script>
-  </body>
+        input: {
+          styles: {
+            borderRadius: '10px',
+          }
+        },
+        button: {
+          styles: {
+            borderRadius: '10px',
+          }
+        }
+      },
+      onSubscribe: (value) => {
+        console.log("foi", value);
+      }
+    });
+  </script>
+</body>
+
 </html>
