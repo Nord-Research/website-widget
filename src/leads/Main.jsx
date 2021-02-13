@@ -1,18 +1,25 @@
 import { h } from "preact";
-import { useContext, useState } from "preact/hooks";
-import { ConfigContext } from "../AppContext";
-import Spacer from "../components/Spacer.jsx";
+import { useState } from "preact/hooks";
+import { useAppContextConsumer } from "../AppContext";
+
+import LeadsContentLayout from './LeadsContentLayout/index';
+
 import { campaignsService, customersService } from "../services";
+
 import "./main.css";
 
 const Main = () => {
   const params = new URLSearchParams(window.location.search);
-  const config = useContext(ConfigContext);
+  const config = useAppContextConsumer();
   const [alert, setAlert] = useState(undefined);
   const [body, setBody] = useState({});
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   let { email, name, birthdate, phone } = body;
+
+  const { leads = {} } = config;
+  const { containerStyles = {} } = leads;
+  console.log(leads, config)
 
   const handleChange = (evt) => {
     let { target } = evt;
@@ -91,55 +98,53 @@ const Main = () => {
     );
 
   return (
-    <div>
-      <Spacer direction="column" horizontal="stretch">
-        {config.name && (
-          <input
-            id="name"
-            placeholder="Nome:"
-            type="text"
-            value={name}
-            onChange={handleChange}
-          />
-        )}
-        {config.phone && (
-          <input
-            id="phone"
-            placeholder="DDD+Celular"
-            type="tel"
-            value={phone}
-            onChange={handleChange}
-          />
-        )}
-        {config.birthdate && (
-          <input
-            id="birthdate"
-            placeholder="Nascimento em:"
-            type="date"
-            value={birthdate}
-            onChange={handleChange}
-          />
-        )}
+    <LeadsContentLayout containerStyles={containerStyles}>
+      {config.name && (
         <input
-          id="email"
-          placeholder="Email:"
-          type="email"
-          value={email}
+          id="name"
+          placeholder="Nome:"
+          type="text"
+          value={name}
           onChange={handleChange}
         />
-        {alert && (
-          <div id="alert">
-            <button class="close" onClick={() => setAlert(false)}>
-              <span aria-hidden="true">×</span>
-            </button>
-            <span aria-hidden="true">{alert}</span>
-          </div>
-        )}
-        <button id="subscription-button" onClick={submit}>
-          {loading ? "SALVANDO..." : "ACESSAR AGORA"}
-        </button>
-      </Spacer>
-    </div>
+      )}
+      {config.phone && (
+        <input
+          id="phone"
+          placeholder="DDD+Celular"
+          type="tel"
+          value={phone}
+          onChange={handleChange}
+        />
+      )}
+      {config.birthdate && (
+        <input
+          id="birthdate"
+          placeholder="Nascimento em:"
+          type="date"
+          value={birthdate}
+          onChange={handleChange}
+        />
+      )}
+      <input
+        id="email"
+        placeholder="Email:"
+        type="email"
+        value={email}
+        onChange={handleChange}
+      />
+      {alert && (
+        <div id="alert">
+          <button class="close" onClick={() => setAlert(false)}>
+            <span aria-hidden="true">×</span>
+          </button>
+          <span aria-hidden="true">{alert}</span>
+        </div>
+      )}
+      <button id="subscription-button" onClick={submit}>
+        {loading ? "SALVANDO..." : "ACESSAR AGORA"}
+      </button>
+    </LeadsContentLayout>
   );
 };
 
