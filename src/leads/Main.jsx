@@ -4,22 +4,34 @@ import { useAppContextConsumer } from "../AppContext";
 
 import LeadsContentLayout from './LeadsContentLayout/index';
 
+import { } from '../constants';
 import { campaignsService, customersService } from "../services";
 
 import "./main.css";
 
+const getStylesProp = (styles) => Boolean(styles) ? styles : {};
+
+const useLeadsConfigStyles = (leads = DEFAULT_LEADS_CONFIG_STYLES) => {
+  const containerStyles = getStylesProp(leads.container.styles)
+  const buttonStyles = getStylesProp(leads.button.styles);
+  const inputStyles = getStylesProp(leads.inputStyles);
+
+  return {
+    containerStyles,
+    buttonStyles,
+    inputStyles,
+  };
+}
+
 const Main = () => {
   const params = new URLSearchParams(window.location.search);
   const config = useAppContextConsumer();
+  const { containerStyles, buttonStyles, inputStyles } = useLeadsConfigStyles(config.leads);
   const [alert, setAlert] = useState(undefined);
   const [body, setBody] = useState({});
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   let { email, name, birthdate, phone } = body;
-
-  const { leads = {} } = config;
-  const { containerStyles = {} } = leads;
-  console.log(leads, config)
 
   const handleChange = (evt) => {
     let { target } = evt;
@@ -106,6 +118,7 @@ const Main = () => {
           type="text"
           value={name}
           onChange={handleChange}
+          style={inputStyles}
         />
       )}
       {config.phone && (
@@ -115,6 +128,7 @@ const Main = () => {
           type="tel"
           value={phone}
           onChange={handleChange}
+          style={inputStyles}
         />
       )}
       {config.birthdate && (
@@ -124,6 +138,7 @@ const Main = () => {
           type="date"
           value={birthdate}
           onChange={handleChange}
+          style={inputStyles}
         />
       )}
       <input
@@ -132,6 +147,7 @@ const Main = () => {
         type="email"
         value={email}
         onChange={handleChange}
+        style={inputStyles}
       />
       {alert && (
         <div id="alert">
@@ -141,7 +157,7 @@ const Main = () => {
           <span aria-hidden="true">{alert}</span>
         </div>
       )}
-      <button id="subscription-button" onClick={submit}>
+      <button id="subscription-button" onClick={submit} style={buttonStyles}>
         {loading ? "SALVANDO..." : "ACESSAR AGORA"}
       </button>
     </LeadsContentLayout>
