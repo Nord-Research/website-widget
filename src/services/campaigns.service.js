@@ -23,6 +23,14 @@ const sendWelcome = async (requestData) => {
   });
 };
 
+const sendWaitingLine = async (requestData) => {
+  return await callApi({
+    url: `${HOSTS.PROD.API}/waiting-line`,
+    method: "POST",
+    requestData,
+  });
+};
+
 const callApi = async (request) => {
   return new Promise((resolve, reject) => {
     client
@@ -43,5 +51,6 @@ const callApi = async (request) => {
 
 export const campaignsService = {
   sendReport,
+  sendWaitingLine,
   sendWelcome,
 };

@@ -58,6 +58,13 @@ const Main = () => {
 
       config.onSubscribe(email);
 
+      if (config.waiting_line) {
+        await campaignsService.sendWaitingLine({
+          email: email,
+          plan: config.plan,
+        });
+      }
+
       if (config.report_url) {
         await campaignsService.sendReport({
           email,
