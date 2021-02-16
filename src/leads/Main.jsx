@@ -54,6 +54,7 @@ const Main = () => {
         ...body,
         ...additionalItems,
         url: window.location.href,
+        plan: config.plan,
       });
 
       config.onSubscribe(email);
