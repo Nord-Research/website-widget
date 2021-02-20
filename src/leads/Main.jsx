@@ -11,19 +11,19 @@ import "./main.css";
 const getStylesProp = (styles) => Boolean(styles) ? styles : {};
 
 const useLeadsConfigStyles = ({
-  container = {},
-  button = {},
-  input = {}
-}) => ({
-  containerStyles: getStylesProp(container.styles),
-  buttonStyles: getStylesProp(button.styles),
-  inputStyles: getStylesProp(input.styles),
+  container,
+  button,
+  input
+} = {}) => ({
+  containerStyles: getStylesProp(container),
+  buttonStyles: getStylesProp(button),
+  inputStyles: getStylesProp(input),
 });
 
 const Main = () => {
   const params = new URLSearchParams(window.location.search);
   const config = useAppContextConsumer();
-  const { containerStyles, buttonStyles, inputStyles } = useLeadsConfigStyles(config.leads);
+  const { containerStyles, buttonStyles, inputStyles } = useLeadsConfigStyles(config.styles);
   const [alert, setAlert] = useState(undefined);
   const [body, setBody] = useState({});
   const [loading, setLoading] = useState(false);
