@@ -2,19 +2,15 @@ import { h } from "preact";
 import { useState } from "preact/hooks";
 import { useAppContextConsumer } from "../AppContext";
 
-import LeadsContentLayout from './LeadsContentLayout/index';
+import LeadsContentLayout from "./LeadsContentLayout/index";
 
 import { campaignsService, customersService } from "../services";
 
 import "./main.css";
 
-const getStylesProp = (styles) => Boolean(styles) ? styles : {};
+const getStylesProp = (styles) => (Boolean(styles) ? styles : {});
 
-const useLeadsConfigStyles = ({
-  container,
-  button,
-  input
-} = {}) => ({
+const useLeadsConfigStyles = ({ container, button, input } = {}) => ({
   containerStyles: getStylesProp(container),
   buttonStyles: getStylesProp(button),
   inputStyles: getStylesProp(input),
@@ -23,7 +19,9 @@ const useLeadsConfigStyles = ({
 const Main = () => {
   const params = new URLSearchParams(window.location.search);
   const config = useAppContextConsumer();
-  const { containerStyles, buttonStyles, inputStyles } = useLeadsConfigStyles(config.styles);
+  const { containerStyles, buttonStyles, inputStyles } = useLeadsConfigStyles(
+    config.styles
+  );
   const [alert, setAlert] = useState(undefined);
   const [body, setBody] = useState({});
   const [loading, setLoading] = useState(false);
@@ -100,6 +98,11 @@ const Main = () => {
       if (config.successUrl) window.location.href = config.successUrl;
     } catch (error) {
       console.log(error);
+
+      if (!error.message) {
+        setAlert(error.data.message);
+        return;
+      }
     } finally {
       setLoading(false);
     }
