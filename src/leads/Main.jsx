@@ -166,7 +166,7 @@ const Main = () => {
         </div>
       )}
       <button id="subscription-button" onClick={submit} style={buttonStyles}>
-        {loading ? "SALVANDO..." : "ACESSAR AGORA"}
+        {loading ? "SALVANDO..." : config.label || "ACESSAR AGORA"}
       </button>
     </LeadsContentLayout>
   );
