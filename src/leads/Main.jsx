@@ -69,6 +69,7 @@ const Main = () => {
         ...additionalItems,
         url: window.location.href,
         plan: config.plan,
+        listId: config.listId,
       });
 
       config.onSubscribe(email);
