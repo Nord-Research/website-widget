@@ -88,7 +88,7 @@ const Main = () => {
           report_url: config.report_url,
           sender_email: config.sender_email,
         });
-      } else {
+      } else if (!config.off_welcome) {
         await campaignsService.sendWelcome({
           email,
         });
