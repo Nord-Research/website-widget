@@ -12,6 +12,8 @@
 
   <div id="leads"></div>
 
+  <div id="price-history"></div>
+
   <script>
     (function (w, d, s, o, f, js, fjs) {
       w[o] =
@@ -65,6 +67,10 @@
       onSubscribe: (value) => {
         console.log("foi", value);
       },
+    });
+
+    _nord('initPriceHistory', {
+      container: 'price-history'
     });
   </script>
 </body>

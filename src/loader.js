@@ -57,6 +57,13 @@ export default (win, defaultConfig, scriptElement, render) => {
           win[`loaded-${instanceName}`] = true;
           break;
 
+        case "initPriceHistory":
+          wrappingElement.setAttribute("id", `${instanceName}-price-history`);
+          render(wrappingElement, loadedObject, methodName);
+
+          win[`loaded-${instanceName}`] = true;
+          break;
+
         default:
           console.warn(`Unsupported method [${methodName}]`, item[1]);
       }
