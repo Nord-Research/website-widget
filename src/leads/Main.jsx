@@ -4,7 +4,7 @@ import { useAppContextConsumer } from "../AppContext";
 
 import LeadsContentLayout from './LeadsContentLayout/index';
 
-import { } from '../constants';
+import { DEFAULT_LEADS_CONFIG_STYLES } from '../constants';
 import { campaignsService, customersService } from "../services";
 
 import "./main.css";
