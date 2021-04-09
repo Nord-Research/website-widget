@@ -2,7 +2,7 @@ import { h } from "preact";
 
 import './styles.css';
 
-export const Main = ({ children }) => {
+export const Title = ({ children }) => {
   return (
     <p className="title">
       {children}
@@ -10,4 +10,4 @@ export const Main = ({ children }) => {
   );
 };
 
-export default Main;
+export default Title;
