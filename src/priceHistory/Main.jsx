@@ -1,12 +1,11 @@
 import { h } from "preact";
-import HistoryContent from './HistoryContent';
+
+import Title from './components/Title';
 
 export const Main = () => {
   return (
     <div>
-      <HistoryContent />
-      <HistoryContent />
-      <HistoryContent />
+      <Title>No dia de hoje</Title>
     </div>
   );
 };
