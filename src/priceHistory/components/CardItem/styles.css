@@ -1,7 +1,63 @@
+.card-item-container {
+  display: inline-block;
+}
+
 div.card-item {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   width: 140px;
   height :74px;
   border-radius: 8px;
   background: #FFFFFF;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.12);
+  padding: 12px 12px 8px 12px;
+}
+
+div.card-item__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 120%;
+  text-transform: uppercase;
+}
+
+div.card-item__header > .indicator {
+  color: #777777;
+}
+
+div.card-item__header > .price {
+  color: #002752;
+}
+
+div.card-item__content {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+}
+
+div.card-item__content > p.indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 120%;
+  margin: 0;
+}
+
+div.card-item__content svg {
+  margin-right: 2px;
+}
+
+div.card-item__content > .positive {
+  color: #02BF92;
+}
+
+div.card-item__content > .negative {
+  color: #E83D4E;
 }

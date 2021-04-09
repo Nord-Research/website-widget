@@ -1,0 +1,10 @@
+div.historical-group__container {
+  margin-bottom: 40px;
+}
+
+div.historical-group__cards {
+  display: grid;
+  grid-template-columns: 140px 140px 140px 140px;
+  grid-auto-flow: column;
+  gap: 20px;
+}

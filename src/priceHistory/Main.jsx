@@ -1,13 +1,16 @@
 import { h } from "preact";
 
-import Title from './components/Title';
+import HistoricalGroup from './components/HistoricalGroup';
 
-export const Main = () => {
-  return (
-    <div>
-      <Title>No dia de hoje</Title>
-    </div>
-  );
-};
+import './main.css';
+
+export const Main = () => (
+  <div className="price-history__container">
+    <HistoricalGroup />
+    <HistoricalGroup />
+    <HistoricalGroup />
+  </div>
+);
+
 
 export default Main;
