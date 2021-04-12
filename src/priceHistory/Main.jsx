@@ -6,6 +6,29 @@ import { getIndicators, getEquities } from '../services/indicators.service';
 
 import './main.css';
 
+const ITEMS = [
+  {
+    title: 'IBOVESPA',
+    price: 15.00,
+    comparative: '0.21',
+  },
+  {
+    title: 'IBOVESPA',
+    price: 15.00,
+    comparative: '0.21',
+  },
+  {
+    title: 'IBOVESPA',
+    price: 15.00,
+    comparative: '0.21',
+  },
+  {
+    title: 'IBOVESPA',
+    price: 15.00,
+    comparative: '0.21',
+  }
+];
+
 export const Main = () => {
   useEffect(() => {
     (async () => {
@@ -23,9 +46,9 @@ export const Main = () => {
 
   return (
     <div className="price-history__container">
-      <HistoricalGroup />
-      <HistoricalGroup />
-      <HistoricalGroup />
+      <HistoricalGroup title="No dia de hoje" items={ITEMS} />
+      <HistoricalGroup title="Maiores Altas" items={ITEMS} />
+      <HistoricalGroup title="Maiores baixas" items={ITEMS} />
     </div>
   );
 }

@@ -5,14 +5,15 @@ import CardItem from '../CardItem';
 
 import './styles.css';
 
-export const HistoricalGroup = () => (
+export const HistoricalGroup = ({ title = '', items = [] }) => (
   <div className="historical-group__container">
-    <Title>No dia de hoje</Title>
+    {title && (
+      <Title>{title}</Title>
+    )}
     <div className="historical-group__cards">
-      <CardItem />
-      <CardItem />
-      <CardItem />
-      <CardItem />
+      {items.map(item => (
+        <CardItem />
+      ))}
     </div>
   </div>
 );
