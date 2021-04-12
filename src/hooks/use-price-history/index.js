@@ -21,7 +21,7 @@ export const usePriceHistory = () => {
         const highs = getHighestHighs(indicators);
         const losses = getBiggestLosses(indicators);
 
-        setData({ highs, losses, equities });
+        setData({ highs, losses, today: equities });
       } catch (e) {
         console.error(e);
       }

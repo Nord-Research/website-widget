@@ -1,0 +1,1 @@
+export const ACCEPTED_EQUITIES_ACTION = ['ibov', 'sep', 'dolar', 'ifix'];
