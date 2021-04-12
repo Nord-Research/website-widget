@@ -1,0 +1,1 @@
+export const prop = (propertie = '') => (data) => data[propertie];

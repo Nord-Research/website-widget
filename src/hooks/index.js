@@ -1,0 +1,1 @@
+export { default as usePriceHistory } from './use-price-history'

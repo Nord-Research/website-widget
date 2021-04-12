@@ -1,1 +1,3 @@
 export * from './price.utils';
+export * from './ramda';
+export * from './object';

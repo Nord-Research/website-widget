@@ -7,8 +7,8 @@ import { numberToBRL } from '../../../utils';
 
 import './styles.css';
 
-const Indicator = ({ comparative = 0 }) => {
-  const isPositive = comparative >= 0;
+const Indicator = ({ diff = 0 }) => {
+  const isPositive = diff > 0;
 
   return (
     <p className={`indicator ${isPositive ? 'positive' : 'negative'}`}>
@@ -17,25 +17,23 @@ const Indicator = ({ comparative = 0 }) => {
       ) : (
         <ArrowDown />
       )}
-      {comparative}%
+      {diff.toFixed(2)}%
     </p>
   )
 };
 
-export const CardItem = ({ indicator = 'IBOVESPA', price = 0, comparative = 0 }) => {
-  return (
-    <div className="card-item-container">
-      <div className="card-item">
-        <div className="card-item__header">
-          <div className="indicator">{indicator}</div>
-          <div className="price">{numberToBRL(price)}</div>
-        </div>
-        <div className="card-item__content">
-          <Indicator comparative={comparative} />
-        </div>
+export const CardItem = ({ symbol = '', price = 0, base = 0, daysPercentageDiff }) => (
+  <div className="card-item-container">
+    <div className="card-item">
+      <div className="card-item__header">
+        <div className="indicator">{symbol}</div>
+        <div className="price">{numberToBRL(price / 100)}</div>
+      </div>
+      <div className="card-item__content">
+        <Indicator price={price} base={base} diff={daysPercentageDiff} />
       </div>
     </div>
-  );
-};
+  </div>
+);
 
 export default CardItem;
