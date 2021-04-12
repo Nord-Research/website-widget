@@ -8,22 +8,22 @@ import './main.css';
 
 const ITEMS = [
   {
-    title: 'IBOVESPA',
+    indicator: 'IBOVESPA',
     price: 15.00,
     comparative: '0.21',
   },
   {
-    title: 'IBOVESPA',
+    indicator: 'IBOVESPA',
     price: 15.00,
     comparative: '0.21',
   },
   {
-    title: 'IBOVESPA',
+    indicator: 'IBOVESPA',
     price: 15.00,
     comparative: '0.21',
   },
   {
-    title: 'IBOVESPA',
+    indicator: 'IBOVESPA',
     price: 15.00,
     comparative: '0.21',
   }
