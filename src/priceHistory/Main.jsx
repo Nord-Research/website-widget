@@ -10,22 +10,22 @@ const ITEMS = [
   {
     indicator: 'IBOVESPA',
     price: 15.00,
-    comparative: '0.21',
+    comparative: -0.21,
   },
   {
     indicator: 'IBOVESPA',
     price: 15.00,
-    comparative: '0.21',
+    comparative: 0.21,
   },
   {
     indicator: 'IBOVESPA',
     price: 15.00,
-    comparative: '0.21',
+    comparative: -0.21,
   },
   {
     indicator: 'IBOVESPA',
     price: 15.00,
-    comparative: '0.21',
+    comparative: 0.21,
   }
 ];
 

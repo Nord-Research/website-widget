@@ -7,6 +7,21 @@ import { numberToBRL } from '../../../utils';
 
 import './styles.css';
 
+const Indicator = ({ comparative = 0 }) => {
+  const isPositive = comparative >= 0;
+
+  return (
+    <p className={`indicator ${isPositive ? 'positive' : 'negative'}`}>
+      {isPositive ? (
+        <ArrowUp />
+      ) : (
+        <ArrowDown />
+      )}
+      {comparative}%
+    </p>
+  )
+};
+
 export const CardItem = ({ indicator = 'IBOVESPA', price = 0, comparative = 0 }) => {
   return (
     <div className="card-item-container">
@@ -16,11 +31,7 @@ export const CardItem = ({ indicator = 'IBOVESPA', price = 0, comparative = 0 })
           <div className="price">{numberToBRL(price)}</div>
         </div>
         <div className="card-item__content">
-          <p className="positive indicator">
-            {/* <ArrowDown /> */}
-            <ArrowUp />
-            {comparative}%
-        </p>
+          <Indicator comparative={comparative} />
         </div>
       </div>
     </div>
