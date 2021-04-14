@@ -11,13 +11,13 @@ const getHighestHighs = indicators => indicators.filter(isValued).sort(sortByDay
 
 const getBiggestLosses = indicators => indicators.filter(isDevalued).sort(sortByDaysPercentageDiff).reverse().slice(0, 4);
 
-export const usePriceHistory = () => {
+export const usePriceHistory = (props) => {
   const [data, setData] = useState({});
 
   useEffect(() => {
     (async () => {
       try {
-        const [indicators, equities] = await Promise.all([getIndicators(), getEquities()]);
+        const [indicators, equities] = await Promise.all([getIndicators(), getEquities(props.equities)]);
         const highs = getHighestHighs(indicators);
         const losses = getBiggestLosses(indicators);
 

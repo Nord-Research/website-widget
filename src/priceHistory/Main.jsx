@@ -2,11 +2,13 @@ import { h } from "preact";
 
 import HistoricalGroup from './components/HistoricalGroup';
 import { usePriceHistory } from '../hooks/use-price-history';
+import { useAppContextConsumer } from "../AppContext";
 
 import './main.css';
 
 export const Main = () => {
-  const { highs, losses, today } = usePriceHistory();
+  const { equities } = useAppContextConsumer();
+  const { highs, losses, today } = usePriceHistory({ equities });
 
   return (
     <div className="price-history__container">

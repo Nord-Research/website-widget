@@ -1,8 +1,9 @@
 import axios from "axios";
-import dayjs from 'dayjs'
+import dayjs from 'dayjs';
 
 import { prop, values, keys } from '../utils';
-import { X_API_KEY } from '../constants/keys.contants'
+import { X_API_KEY } from '../constants/keys.contants';
+import { DEFAULT_ACCEPTED_EQUITIES } from '../constants/equities.contants';
 
 const client = axios.create();
 
@@ -17,7 +18,7 @@ const yesterdayFormattedDate =
     .setDate(curretDate.getDate() - EQUITIES_DAYS_TO_GET))
     .format(GET_EQUITIES_DATE_FORMAT);
 
-const BEARER = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQsImVtYWlsIjoibWFpY29ucnM5NUBnbWFpbC5jb20iLCJpYXQiOjE2MTc3NDk1NDh9.e9RROS3BowFuNrLvzVhddnseJ5MmD0Wz2VrA1pLG59o';
+const BEARER = '';
 
 const formatIndicatorsWithPercentageDiff = indicators => indicators.map(indicator => ({
   ...indicator,
@@ -65,7 +66,7 @@ export const getIndicators = () => client.get('https://iafyojiy49.execute-api.us
   .then(values)
   .then(formatIndicatorsWithPercentageDiff);
 
-export const getEquities = (labels = ['ibov', 'sep', 'dolar', 'ifix']) => client.get(`https://api.abalustre.com/historical/indicators?from=${yesterdayFormattedDate}&to=${todayFormattedDate}`, {
+export const getEquities = (labels = DEFAULT_ACCEPTED_EQUITIES) => client.get(`https://api.abalustre.com/historical/indicators?from=${yesterdayFormattedDate}&to=${todayFormattedDate}`, {
   headers: {
     authorization: `Bearer ${BEARER}`,
     'x-api-key': X_API_KEY,
