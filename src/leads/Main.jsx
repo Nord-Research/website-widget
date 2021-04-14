@@ -88,6 +88,13 @@ const Main = () => {
           report_url: config.report_url,
           sender_email: config.sender_email,
         });
+      } else if (config.ebook_url) {
+        await campaignsService.sendBook({
+          email,
+          sender_name: config.sender_name,
+          report_url: config.ebook_url,
+          sender_email: config.sender_email,
+        });
       } else if (!config.off_welcome) {
         await campaignsService.sendWelcome({
           email,
