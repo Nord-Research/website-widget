@@ -11,13 +11,13 @@ const getHighestHighs = equities => equities.filter(isValued).sort(sortByDaysPer
 
 const getBiggestLosses = equities => equities.filter(isDevalued).sort(sortByDaysPercentageDiff).reverse().slice(0, 4);
 
-export const useEquities = (props) => {
+export const useEquities = () => {
   const [data, setData] = useState({});
 
   useEffect(() => {
     (async () => {
       try {
-        const equities = await getEquities(props.equities);
+        const equities = await getEquities();
         const highs = getHighestHighs(equities);
         const losses = getBiggestLosses(equities);
 

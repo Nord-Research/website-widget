@@ -2,13 +2,13 @@ import { useEffect, useMemo, useState } from "preact/hooks";
 import { getIndicators } from '../../services/indicators.service';
 
 
-export const useIndicators = () => {
+export const useIndicators = (props) => {
   const [data, setData] = useState({});
 
   useEffect(() => {
     (async () => {
       try {
-        const indicators = await getIndicators();
+        const indicators = await getIndicators(props.labels);
 
         setData({ indicators });
       } catch (e) {

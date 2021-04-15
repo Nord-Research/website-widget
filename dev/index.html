@@ -71,18 +71,19 @@
       },
     });
 
-    // _nord('initPriceHistory', {
-    //   container: 'price-history',
-    //   equities: ['sep', 'ifix', 'dolar', 'bdrx', 'itag', 'cdi', 'isee', 'poup']
-    // });
-
     _nord('initIndicators', {
       container: 'indicators',
+      labels: ['sep', 'dolar', 'bdrx', 'itag', 'cdi', 'isee', 'poup'],
+      styles: {
+        marginTop: '50px',
+      }
     });
 
     _nord('initEquities', {
       container: 'equities',
-      equities: ['sep', 'ifix', 'dolar', 'bdrx', 'itag', 'cdi', 'isee', 'poup']
+      styles: {
+        marginBottom: '50px',
+      }
     });
   </script>
 </body>

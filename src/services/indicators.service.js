@@ -37,10 +37,6 @@ const formatIndicators = (labels) => (indicators) => {
     const recent = recentVariation[label];
     const old = oldVariation[label];
 
-    console.log({
-      label, recent: recentVariation.timestamp, old: oldVariation.timestamp
-    })
-
     return {
       symbol: label,
       base: old,
