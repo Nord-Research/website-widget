@@ -1,1 +1,0 @@
-export const DEFAULT_ACCEPTED_EQUITIES = ['ibov', 'sep', 'dolar', 'ifix'];

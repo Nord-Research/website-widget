@@ -1,46 +1,45 @@
 import axios from "axios";
 import dayjs from 'dayjs';
 
-import { prop, values, keys } from '../utils';
+import { prop, keys } from '../utils';
 import { X_API_KEY } from '../constants/keys.contants';
-import { DEFAULT_ACCEPTED_EQUITIES } from '../constants/equities.contants';
+import { DEFAULT_ACCEPTED_INDICATORS } from '../constants/indicators.constants';
 
 const client = axios.create();
 
-const EQUITIES_DAYS_TO_GET = 7;
-const GET_EQUITIES_DATE_FORMAT = 'YYYY-MM-DD'
+const DAYS_TO_GET = 7;
+const DATE_FORMAT = 'YYYY-MM-DD'
 
 const curretDate = new Date();
 
-const todayFormattedDate = dayjs(curretDate).format(GET_EQUITIES_DATE_FORMAT);
+const todayFormattedDate = dayjs(curretDate).format(DATE_FORMAT);
 const yesterdayFormattedDate =
   dayjs(curretDate
-    .setDate(curretDate.getDate() - EQUITIES_DAYS_TO_GET))
-    .format(GET_EQUITIES_DATE_FORMAT);
+    .setDate(curretDate.getDate() - DAYS_TO_GET))
+    .format(DATE_FORMAT);
 
-const BEARER = '';
+const BEARER = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQsImVtYWlsIjoibWFpY29ucnM5NUBnbWFpbC5jb20iLCJpYXQiOjE2MTc3NDk1NDh9.e9RROS3BowFuNrLvzVhddnseJ5MmD0Wz2VrA1pLG59o';
 
-const formatIndicatorsWithPercentageDiff = indicators => indicators.map(indicator => ({
-  ...indicator,
-  daysPercentageDiff: (indicator.price - indicator.base) / (indicator.price) * 100,
-}));
-
-const formatEquities = (labels) => (equities) => {
+const formatIndicators = (labels) => (indicators) => {
   return labels.map(label => {
-    const filteredEquitiesByLabel = equities.filter(equitie => keys(equitie).includes(label));
+    const filteredIndicatorsByLabel = indicators.filter(indicator => keys(indicator).includes(label));
 
-    const recentVariation = filteredEquitiesByLabel
-      .find(equitie => Boolean(equitie[label]));
+    const recentVariation = filteredIndicatorsByLabel
+      .find(indicator => Boolean(indicator[label]));
 
-    const oldVariation = filteredEquitiesByLabel
-      .find(equitie => {
-        if (equitie.timestamp === recentVariation.timestamp) return false;
+    const oldVariation = filteredIndicatorsByLabel
+      .find(indicator => {
+        if (indicator.timestamp === recentVariation.timestamp) return false;
 
-        return Boolean(equitie[label]);
+        return Boolean(indicator[label]);
       });
 
     const recent = recentVariation[label];
     const old = oldVariation[label];
+
+    console.log({
+      label, recent: recentVariation.timestamp, old: oldVariation.timestamp
+    })
 
     return {
       symbol: label,
@@ -51,27 +50,14 @@ const formatEquities = (labels) => (equities) => {
   });
 }
 
-export const getIndicators = () => client.get('https://iafyojiy49.execute-api.us-east-1.amazonaws.com/prod/highlight', {
-  params: {
-    range: 1,
-    period: 'day',
-    absolute: true,
-    onlyCompanies: true
-  },
-  headers: {
-    'x-api-key': X_API_KEY,
-  },
-})
-  .then(prop('data'))
-  .then(values)
-  .then(formatIndicatorsWithPercentageDiff);
-
-export const getEquities = (labels = DEFAULT_ACCEPTED_EQUITIES) => client.get(`https://api.abalustre.com/historical/indicators?from=${yesterdayFormattedDate}&to=${todayFormattedDate}`, {
-  headers: {
-    authorization: `Bearer ${BEARER}`,
-    'x-api-key': X_API_KEY,
-  }
-})
+export const getIndicators = (labels = DEFAULT_ACCEPTED_INDICATORS) => client.get(
+  `https://api.abalustre.com/historical/indicators?from=${yesterdayFormattedDate}&to=${todayFormattedDate}`,
+  {
+    headers: {
+      authorization: `Bearer ${BEARER}`,
+      'x-api-key': X_API_KEY,
+    }
+  })
   .then(prop('data'))
   .then(prop('data'))
-  .then(formatEquities(labels));
+  .then(formatIndicators(labels));

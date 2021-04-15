@@ -1,1 +1,2 @@
-export { default as usePriceHistory } from './use-price-history'
+export { default as useEquities } from './use-equities';
+export { default as useIndicators } from './use-indicators';
