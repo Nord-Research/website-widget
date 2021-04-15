@@ -4,6 +4,7 @@ import { Subscription } from "./Subscription";
 import { Ads } from "./Ads";
 import { Leads } from "./Leads";
 import Indicators from './indicators/Main'
+import Equities from './equities/Main'
 
 loader(window, {}, window.document.currentScript, (el, config, component) => {
   switch (component) {
@@ -21,6 +22,10 @@ loader(window, {}, window.document.currentScript, (el, config, component) => {
 
     case "initIndicators":
       render(h(Indicators, { ...config }), el);
+      break;
+
+    case "initEquities":
+      render(h(Equities, { ...config }), el);
       break;
 
     default:
