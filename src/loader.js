@@ -57,8 +57,15 @@ export default (win, defaultConfig, scriptElement, render) => {
           win[`loaded-${instanceName}`] = true;
           break;
 
-        case "initPriceHistory":
-          wrappingElement.setAttribute("id", `${instanceName}-price-history`);
+        case "initIndicators":
+          wrappingElement.setAttribute("id", `${instanceName}-indicators`);
+          render(wrappingElement, loadedObject, methodName);
+
+          win[`loaded-${instanceName}`] = true;
+          break;
+
+        case "initEquities":
+          wrappingElement.setAttribute("id", `${instanceName}-equities`);
           render(wrappingElement, loadedObject, methodName);
 
           win[`loaded-${instanceName}`] = true;

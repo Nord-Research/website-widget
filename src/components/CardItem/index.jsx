@@ -3,7 +3,7 @@ import { h } from "preact";
 import ArrowUp from '../../icons/ArrowUp'
 import ArrowDown from '../../icons/ArrowDown'
 
-import { numberToBRL } from '../../../utils';
+import { numberToBRL } from '../../utils';
 
 import './styles.css';
 

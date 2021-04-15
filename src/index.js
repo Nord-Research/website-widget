@@ -3,7 +3,7 @@ import loader from "./loader";
 import { Subscription } from "./Subscription";
 import { Ads } from "./Ads";
 import { Leads } from "./Leads";
-import { PriceHistory } from './PriceHistory';
+import Indicators from './indicators/Main'
 
 loader(window, {}, window.document.currentScript, (el, config, component) => {
   switch (component) {
@@ -19,8 +19,8 @@ loader(window, {}, window.document.currentScript, (el, config, component) => {
       render(h(Leads, { ...config }), el);
       break;
 
-    case "initPriceHistory":
-      render(h(PriceHistory, { ...config }), el);
+    case "initIndicators":
+      render(h(Indicators, { ...config }), el);
       break;
 
     default:

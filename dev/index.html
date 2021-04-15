@@ -12,7 +12,9 @@
 
   <div id="leads"></div>
 
-  <div id="price-history"></div>
+  <div id="indicators"></div>
+
+  <div id="equities"></div>
 
   <script>
     (function (w, d, s, o, f, js, fjs) {
@@ -69,10 +71,19 @@
       },
     });
 
-    _nord('initPriceHistory', {
-      container: 'price-history',
-      equities: ['sep', 'ifix', 'dolar', 'bdrx', 'itag', 'cdi', 'isee', 'poup']
+    // _nord('initPriceHistory', {
+    //   container: 'price-history',
+    //   equities: ['sep', 'ifix', 'dolar', 'bdrx', 'itag', 'cdi', 'isee', 'poup']
+    // });
+
+    _nord('initIndicators', {
+      container: 'indicators',
     });
+
+    // _nord('initEquities', {
+    //   container: 'equities',
+    //   equities: ['sep', 'ifix', 'dolar', 'bdrx', 'itag', 'cdi', 'isee', 'poup']
+    // });
   </script>
 </body>
 
