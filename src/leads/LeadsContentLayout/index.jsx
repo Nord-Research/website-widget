@@ -6,6 +6,7 @@ const LeadsContentLayout = ({ children, containerStyles = {} }) => {
   const styles = {
     gap: gap ? gap : '10px',
     gridAutoFlow: direction === 'horizontal' ? 'column' : 'row',
+    ...containerStyles,
   };
 
   return (

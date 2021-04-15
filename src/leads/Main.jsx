@@ -2,31 +2,26 @@ import { h } from "preact";
 import { useState } from "preact/hooks";
 import { useAppContextConsumer } from "../AppContext";
 
-import LeadsContentLayout from './LeadsContentLayout/index';
+import LeadsContentLayout from "./LeadsContentLayout/index";
 
-import { DEFAULT_LEADS_CONFIG_STYLES } from '../constants';
 import { campaignsService, customersService } from "../services";
 
 import "./main.css";
 
-const getStylesProp = (styles) => Boolean(styles) ? styles : {};
+const getStylesProp = (styles) => (Boolean(styles) ? styles : {});
 
-const useLeadsConfigStyles = (leads = DEFAULT_LEADS_CONFIG_STYLES) => {
-  const containerStyles = getStylesProp(leads.container.styles)
-  const buttonStyles = getStylesProp(leads.button.styles);
-  const inputStyles = getStylesProp(leads.inputStyles);
-
-  return {
-    containerStyles,
-    buttonStyles,
-    inputStyles,
-  };
-}
+const useLeadsConfigStyles = ({ container, button, input } = {}) => ({
+  containerStyles: getStylesProp(container),
+  buttonStyles: getStylesProp(button),
+  inputStyles: getStylesProp(input),
+});
 
 const Main = () => {
   const params = new URLSearchParams(window.location.search);
   const config = useAppContextConsumer();
-  const { containerStyles, buttonStyles, inputStyles } = useLeadsConfigStyles(config.leads);
+  const { containerStyles, buttonStyles, inputStyles } = useLeadsConfigStyles(
+    config.styles
+  );
   const [alert, setAlert] = useState(undefined);
   const [body, setBody] = useState({});
   const [loading, setLoading] = useState(false);
@@ -73,9 +68,18 @@ const Main = () => {
         ...body,
         ...additionalItems,
         url: window.location.href,
+        plan: config.plan,
+        listId: config.listId,
       });
 
       config.onSubscribe(email);
+
+      if (config.waiting_line) {
+        await campaignsService.sendWaitingLine({
+          email: email,
+          plan: config.plan,
+        });
+      }
 
       if (config.report_url) {
         await campaignsService.sendReport({
@@ -84,7 +88,14 @@ const Main = () => {
           report_url: config.report_url,
           sender_email: config.sender_email,
         });
-      } else {
+      } else if (config.ebook_url) {
+        await campaignsService.sendBook({
+          email,
+          sender_name: config.sender_name,
+          report_url: config.ebook_url,
+          sender_email: config.sender_email,
+        });
+      } else if (!config.off_welcome) {
         await campaignsService.sendWelcome({
           email,
         });
@@ -95,6 +106,11 @@ const Main = () => {
       if (config.successUrl) window.location.href = config.successUrl;
     } catch (error) {
       console.log(error);
+
+      if (!error.message) {
+        setAlert(error.data.message);
+        return;
+      }
     } finally {
       setLoading(false);
     }
@@ -158,7 +174,7 @@ const Main = () => {
         </div>
       )}
       <button id="subscription-button" onClick={submit} style={buttonStyles}>
-        {loading ? "SALVANDO..." : "ACESSAR AGORA"}
+        {loading ? "SALVANDO..." : config.label || "ACESSAR AGORA"}
       </button>
     </LeadsContentLayout>
   );

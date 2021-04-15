@@ -41,30 +41,25 @@
     });
 
     _nord("initLeads", {
-      waiting_line: true,
-      plan: "nord-advisor",
       container: "leads",
       utm_medium: "landing-page",
       utm_campaign: "something-happening",
       name: false,
       birthdate: true,
       phone: true,
+      plan: "nord-advisor",
+      label: "Teste 2",
       styles: {
         container: {
-          styles: {
-            direction: 'horizontal',
-          }
+          marginTop: "10px",
+          direction: "horizontal",
         },
         input: {
-          styles: {
-            borderRadius: '10px',
-          }
+          borderRadius: "20px",
         },
         button: {
-          styles: {
-            borderRadius: '10px',
-          }
-        }
+          borderRadius: "20px",
+        },
       },
       onSubscribe: (value) => {
         console.log("foi", value);

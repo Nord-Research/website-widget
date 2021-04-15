@@ -7,6 +7,14 @@ client.interceptors.response.use(undefined, (error) => {
   return Promise.reject(error);
 });
 
+const sendBook = async (requestData) => {
+  return await callApi({
+    url: `${HOSTS.PROD.API}/campaigns/send-ebook`,
+    method: "POST",
+    requestData,
+  });
+};
+
 const sendReport = async (requestData) => {
   return await callApi({
     url: `${HOSTS.PROD.API}/campaigns/send-report`,
@@ -18,6 +26,14 @@ const sendReport = async (requestData) => {
 const sendWelcome = async (requestData) => {
   return await callApi({
     url: `${HOSTS.PROD.API}/campaigns/send-welcome-email`,
+    method: "POST",
+    requestData,
+  });
+};
+
+const sendWaitingLine = async (requestData) => {
+  return await callApi({
+    url: `${HOSTS.PROD.API}/waiting-line`,
     method: "POST",
     requestData,
   });
@@ -42,6 +58,8 @@ const callApi = async (request) => {
 };
 
 export const campaignsService = {
+  sendBook,
   sendReport,
+  sendWaitingLine,
   sendWelcome,
 };
