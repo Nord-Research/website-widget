@@ -8,6 +8,12 @@ const BUNDLE_OUTPUT_DIR = "./dist";
 module.exports = env => {
   const IS_DEV_BUILD = !(env && env.prod);
   let keyFileSync = undefined,
+    certFileSync = undefined;
+
+  if (IS_DEV_BUILD) {
+    keyFileSync = fs.readFileSync("./ssl/findme.tinkerantreats.key");
+    certFileSync = fs.readFileSync("./ssl/findme.tinkerantreats.crt");
+  }
 
   return [
     {
