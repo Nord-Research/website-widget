@@ -57,6 +57,20 @@ export default (win, defaultConfig, scriptElement, render) => {
           win[`loaded-${instanceName}`] = true;
           break;
 
+        case "initIndicators":
+          wrappingElement.setAttribute("id", `${instanceName}-indicators`);
+          render(wrappingElement, loadedObject, methodName);
+
+          win[`loaded-${instanceName}`] = true;
+          break;
+
+        case "initEquities":
+          wrappingElement.setAttribute("id", `${instanceName}-equities`);
+          render(wrappingElement, loadedObject, methodName);
+
+          win[`loaded-${instanceName}`] = true;
+          break;
+
         default:
           console.warn(`Unsupported method [${methodName}]`, item[1]);
       }

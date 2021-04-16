@@ -1,0 +1,1 @@
+export const DEFAULT_ACCEPTED_INDICATORS = ['ibov', 'sep', 'dolar', 'ifix'];

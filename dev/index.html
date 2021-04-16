@@ -1,65 +1,86 @@
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Demo page of the widget</title>
-  </head>
 
-  <body>
-    <div id="mail-collector-for"></div>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Demo page of the widget</title>
+</head>
 
-    <div id="ads-1"></div>
+<body>
+  <div id="mail-collector-for"></div>
 
-    <div id="leads"></div>
+  <div id="ads-1"></div>
 
-    <script>
-      (function (w, d, s, o, f, js, fjs) {
-        w[o] =
-          w[o] ||
-          function () {
-            (w[o].q = w[o].q || []).push(arguments);
-          };
-        (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
-        js.id = o;
-        js.src = f;
-        js.async = 1;
-        fjs.parentNode.insertBefore(js, fjs);
-      })(window, document, "script", "_nord", "./widget.js");
-      _nord("init");
+  <div id="leads"></div>
 
-      _nord("initSubscription", {
-        container: "mail-collector-form",
-        welcomeIdentifier: "aprenda-a-investir-com-a-nords",
-      });
+  <div id="indicators"></div>
 
-      _nord("initAds", {
-        container: "ads-1",
-      });
+  <div id="equities"></div>
 
-      _nord("initLeads", {
-        container: "leads",
-        utm_medium: "landing-page",
-        utm_campaign: "something-happening",
-        name: false,
-        birthdate: true,
-        phone: true,
-        plan: "nord-advisor",
-        label: "Teste 2",
-        styles: {
-          container: {
-            marginTop: "10px",
-            direction: "horizontal",
-          },
-          input: {
-            borderRadius: "20px",
-          },
-          button: {
-            borderRadius: "20px",
-          },
+  <script>
+    (function (w, d, s, o, f, js, fjs) {
+      w[o] =
+        w[o] ||
+        function () {
+          (w[o].q = w[o].q || []).push(arguments);
+        };
+      (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
+      js.id = o;
+      js.src = f;
+      js.async = 1;
+      fjs.parentNode.insertBefore(js, fjs);
+    })(window, document, "script", "_nord", "./widget.js");
+    _nord("init");
+
+    _nord("initSubscription", {
+      container: "mail-collector-form",
+      welcomeIdentifier: "aprenda-a-investir-com-a-nords",
+    });
+
+    _nord("initAds", {
+      container: "ads-1",
+    });
+
+    _nord("initLeads", {
+      container: "leads",
+      utm_medium: "landing-page",
+      utm_campaign: "something-happening",
+      name: false,
+      birthdate: true,
+      phone: true,
+      plan: "nord-advisor",
+      label: "Teste 2",
+      styles: {
+        container: {
+          marginTop: "10px",
+          direction: "horizontal",
         },
-        onSubscribe: (value) => {
-          console.log("foi", value);
+        input: {
+          borderRadius: "20px",
         },
-      });
-    </script>
-  </body>
+        button: {
+          borderRadius: "20px",
+        },
+      },
+      onSubscribe: (value) => {
+        console.log("foi", value);
+      },
+    });
+
+    _nord('initIndicators', {
+      container: 'indicators',
+      labels: ['sep', 'dolar', 'bdrx', 'itag', 'cdi', 'isee', 'poup'],
+      styles: {
+        marginTop: '50px',
+      }
+    });
+
+    _nord('initEquities', {
+      container: 'equities',
+      styles: {
+        marginBottom: '50px',
+      }
+    });
+  </script>
+</body>
+
 </html>
