@@ -7,6 +7,7 @@ const BUNDLE_OUTPUT_DIR = "./dist";
 
 module.exports = env => {
   const IS_DEV_BUILD = !(env && env.prod);
+  let keyFileSync = undefined,
 
   return [
     {
