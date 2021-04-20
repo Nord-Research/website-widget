@@ -12,7 +12,7 @@ export const HistoricalGroup = ({ title = '', items = [] }) => (
     )}
     <div className="historical-group__cards">
       {items.map(item => (
-        <CardItem {...item} />
+        <CardItem {...item} isMonetary={item.symbol === 'dolar'} />
       ))}
     </div>
   </div>

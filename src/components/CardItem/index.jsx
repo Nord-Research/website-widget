@@ -23,18 +23,23 @@ const Indicator = ({ diff = 0 }) => {
   )
 };
 
-export const CardItem = ({ symbol = '', price = 0, base = 0, daysPercentageDiff }) => (
-  <div className="card-item-container">
-    <div className="card-item">
-      <div className="card-item__header">
-        <div className="indicator">{getSymbolFromDictionary(symbol)}</div>
-        <div className="price">{numberToBRL(price / 100)}</div>
-      </div>
-      <div className="card-item__content">
-        <Indicator price={price} base={base} diff={daysPercentageDiff} />
+export const CardItem = ({ symbol = '', price = 0, base = 0, daysPercentageDiff, isMonetary = false }) => {
+  const points = price / 100;
+
+  return (
+    <div className="card-item-container">
+      <div className="card-item">
+        <div className="card-item__header">
+          <div className="indicator">{getSymbolFromDictionary(symbol)}</div>
+          <div className="price">{isMonetary ? numberToBRL(points) : points}</div>
+        </div>
+        <div className="card-item__content">
+          <Indicator price={price} base={base} diff={daysPercentageDiff} />
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+}
+
 
 export default CardItem;
