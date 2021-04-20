@@ -8,6 +8,7 @@ const client = axios.create();
 const formatEquitiesWithPercentageDiff = equities => equities.map(equitie => ({
   ...equitie,
   daysPercentageDiff: (equitie.price - equitie.base) / (equitie.price) * 100,
+  isMonetary: true,
 }));
 
 export const getEquities = () => client.get(
