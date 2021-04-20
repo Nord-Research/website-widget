@@ -1,7 +1,7 @@
 import axios from "axios";
 import dayjs from 'dayjs';
 
-import { prop, keys } from '../utils';
+import { prop, keys, getIsMonetaryLabel } from '../utils';
 import { X_API_KEY } from '../constants/keys.contants';
 import { DEFAULT_ACCEPTED_INDICATORS } from '../constants/indicators.constants';
 
@@ -42,6 +42,7 @@ const formatIndicators = (labels) => (indicators) => {
       base: old,
       price: recent,
       daysPercentageDiff: (recent - old) / (recent) * 100,
+      isMonetary: getIsMonetaryLabel(label),
     };
   });
 }
