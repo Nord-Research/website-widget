@@ -12,6 +12,7 @@ div.card-item {
   background: #FFFFFF;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.12);
   padding: 12px 12px 8px 12px;
+  font-family: 'Poppins', sans-serif;
 }
 
 div.card-item__header {
