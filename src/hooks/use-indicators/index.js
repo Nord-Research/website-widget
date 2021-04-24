@@ -5,6 +5,7 @@ import { getIndicators } from '../../services/indicators.service';
 export const useIndicators = (props) => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const isEmpty = !isLoading && !data.indicators;
 
   useEffect(() => {
     (async () => {
@@ -21,7 +22,7 @@ export const useIndicators = (props) => {
     })();
   }, []);
 
-  return useMemo(() => ({ ...data, isLoading }), [data, isLoading]);
+  return useMemo(() => ({ ...data, isEmpty, isLoading }), [data, isEmpty, isLoading]);
 };
 
 export default useIndicators;

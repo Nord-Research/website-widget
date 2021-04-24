@@ -14,6 +14,7 @@ const getBiggestLosses = equities => equities.filter(isDevalued).sort(sortByDays
 export const useEquities = () => {
   const [equities, setEquities] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const isEmpty = !isLoading && (!equities.highs || !equities.losses);
 
   useEffect(() => {
     (async () => {
@@ -33,7 +34,7 @@ export const useEquities = () => {
     })();
   }, []);
 
-  return useMemo(() => ({ equities, isLoading }), [equities, isLoading]);
+  return useMemo(() => ({ equities, isLoading, isEmpty }), [equities, isLoading, isEmpty]);
 };
 
 export default useEquities;

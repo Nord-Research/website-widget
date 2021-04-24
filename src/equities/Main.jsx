@@ -8,12 +8,22 @@ import { useEquities } from '../hooks/';
 
 const Main = () => {
   const { styles = {} } = useAppContextConsumer();
-  const { equities, isLoading } = useEquities();
+  const { equities, isLoading, isEmpty } = useEquities();
+
+  if (isEmpty) return null;
 
   return (
     <div style={styles}>
-      <HistoricalGroup isLoading={isLoading} title="Maiores Altas" items={equities.highs} />
-      <HistoricalGroup isLoading={isLoading} title="Maiores baixas" items={equities.losses} />
+      <HistoricalGroup
+        isLoading={isLoading}
+        title="Maiores Altas"
+        items={equities.highs}
+      />
+      <HistoricalGroup
+        isLoading={isLoading}
+        title="Maiores baixas"
+        items={equities.losses}
+      />
     </div>
   )
 };
