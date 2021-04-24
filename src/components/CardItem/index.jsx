@@ -1,4 +1,5 @@
 import { h } from "preact";
+import Skeleton from 'preact-loading-skeleton';
 
 import ArrowUp from '../../icons/ArrowUp'
 import ArrowDown from '../../icons/ArrowDown'
@@ -23,20 +24,29 @@ const Indicator = ({ diff = 0 }) => {
   )
 };
 
-export const CardItem = ({ symbol = '', price = 0, base = 0, daysPercentageDiff, isMonetary = false }) => {
+export const CardItem = ({
+  symbol = '',
+  price = 0,
+  base = 0,
+  daysPercentageDiff,
+  isMonetary = false,
+  isLoading = false,
+}) => {
   const points = price / 100;
 
   return (
     <div className="card-item-container">
-      <div className="card-item">
-        <div className="card-item__header">
-          <div className="indicator">{getSymbolFromDictionary(symbol)}</div>
-          <div className="price">{isMonetary ? numberToBRL(points) : points}</div>
+      {isLoading ? <Skeleton width={140} height={74} radius={8} /> : (
+        <div className="card-item">
+          <div className="card-item__header">
+            <div className="indicator">{getSymbolFromDictionary(symbol)}</div>
+            <div className="price">{isMonetary ? numberToBRL(points) : points}</div>
+          </div>
+          <div className="card-item__content">
+            <Indicator diff={daysPercentageDiff} />
+          </div>
         </div>
-        <div className="card-item__content">
-          <Indicator price={price} base={base} diff={daysPercentageDiff} />
-        </div>
-      </div>
+      )}
     </div>
   );
 }

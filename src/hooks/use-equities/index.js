@@ -12,23 +12,28 @@ const getHighestHighs = equities => equities.filter(isValued).sort(sortByDaysPer
 const getBiggestLosses = equities => equities.filter(isDevalued).sort(sortByDaysPercentageDiff).reverse().slice(0, 4);
 
 export const useEquities = () => {
-  const [data, setData] = useState({});
+  const [equities, setEquities] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
+      setIsLoading(true);
+
       try {
         const equities = await getEquities();
         const highs = getHighestHighs(equities);
         const losses = getBiggestLosses(equities);
 
-        setData({ highs, losses });
+        setEquities({ highs, losses });
       } catch (e) {
         console.error(e);
+      } finally {
+        setIsLoading(false)
       }
     })();
   }, []);
 
-  return useMemo(() => data, [data]);
+  return useMemo(() => ({ equities, isLoading }), [equities, isLoading]);
 };
 
 export default useEquities;

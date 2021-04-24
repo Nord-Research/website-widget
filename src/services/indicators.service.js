@@ -7,7 +7,7 @@ import { DEFAULT_ACCEPTED_INDICATORS } from '../constants/indicators.constants';
 
 const client = axios.create();
 
-const DAYS_TO_GET = 7;
+const DAYS_TO_GET = 14;
 const DATE_FORMAT = 'YYYY-MM-DD'
 
 const curretDate = new Date();
