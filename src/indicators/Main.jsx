@@ -8,11 +8,17 @@ import { useIndicators } from '../hooks/';
 
 const Main = () => {
   const { labels, styles = {} } = useAppContextConsumer();
-  const { indicators } = useIndicators({ labels })
+  const { indicators, isLoading, isEmpty } = useIndicators({ labels });
+
+  if (isEmpty) return null;
 
   return (
     <div style={styles}>
-      <HistoricalGroup title="No dia de hoje" items={indicators} />
+      <HistoricalGroup
+        isLoading={isLoading}
+        title="No dia de hoje"
+        items={indicators}
+      />
     </div>
   );
 };
