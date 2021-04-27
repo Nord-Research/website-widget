@@ -71,6 +71,13 @@ export default (win, defaultConfig, scriptElement, render) => {
           win[`loaded-${instanceName}`] = true;
           break;
 
+        case "infiniteSlideshow":
+          wrappingElement.setAttribute("id", `${instanceName}-equities`);
+          render(wrappingElement, loadedObject, methodName);
+
+          win[`loaded-${instanceName}`] = true;
+          break;
+
         default:
           console.warn(`Unsupported method [${methodName}]`, item[1]);
       }
