@@ -1,28 +1,32 @@
 import { h } from "preact";
-import './main.css';
 
 import { AppContext, useAppContextConsumer } from "../AppContext";
 
-const Main = () => {
-  const { images = [] } = useAppContextConsumer();
+import * as Styled from './styles';
 
-  console.log(images);
+const Main = () => {
+  const { images = [], width = 250, duration = '10s' } = useAppContextConsumer();
+  const imagesCount = images.length ?? 0;
 
   return (
-    <div class="slider">
-      <div class="slide-track">
+    <Styled.Slider>
+      <Styled.SlideTrack
+        width={width}
+        imagesCount={imagesCount}
+        duration={duration}
+      >
         {images.map(url => (
-          <div class="slide">
-            <img src={url} height="100" width="250" alt="" />
+          <div style={{ width: `${width}px` }}>
+            <img src={url} width={width} alt="" />
           </div>
         ))}
         {images.map(url => (
-          <div class="slide">
-            <img src={url} height="100" width="250" alt="" />
+          <div style={{ width: `${width}px` }}>
+            <img src={url} width={width} alt="" />
           </div>
         ))}
-      </div>
-    </div>
+      </Styled.SlideTrack>
+    </Styled.Slider>
   )
 };
 
