@@ -1,102 +1,102 @@
 <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo page of the widget</title>
+  </head>
 
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Demo page of the widget</title>
-</head>
+  <body>
+    <div id="mail-collector-for"></div>
 
-<body>
-  <div id="mail-collector-for"></div>
+    <div id="ads-1"></div>
 
-  <div id="ads-1"></div>
+    <div id="leads"></div>
 
-  <div id="leads"></div>
+    <div id="indicators"></div>
 
-  <div id="indicators"></div>
+    <div id="equities"></div>
 
-  <div id="equities"></div>
+    <div id="infinite-slideshow"></div>
 
-  <div id="infinite-slideshow"></div>
+    <script>
+      (function (w, d, s, o, f, js, fjs) {
+        w[o] =
+          w[o] ||
+          function () {
+            (w[o].q = w[o].q || []).push(arguments);
+          };
+        (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
+        js.id = o;
+        js.src = f;
+        js.async = 1;
+        fjs.parentNode.insertBefore(js, fjs);
+      })(window, document, "script", "_nord", "./widget.js");
+      _nord("init");
 
-  <script>
-    (function (w, d, s, o, f, js, fjs) {
-      w[o] =
-        w[o] ||
-        function () {
-          (w[o].q = w[o].q || []).push(arguments);
-        };
-      (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
-      js.id = o;
-      js.src = f;
-      js.async = 1;
-      fjs.parentNode.insertBefore(js, fjs);
-    })(window, document, "script", "_nord", "./widget.js");
-    _nord("init");
+      _nord("initSubscription", {
+        container: "mail-collector-form",
+        welcomeIdentifier: "aprenda-a-investir-com-a-nords",
+      });
 
-    _nord("initSubscription", {
-      container: "mail-collector-form",
-      welcomeIdentifier: "aprenda-a-investir-com-a-nords",
-    });
+      _nord("initAds", {
+        container: "ads-1",
+      });
 
-    _nord("initAds", {
-      container: "ads-1",
-    });
-
-    _nord("initLeads", {
-      container: "leads",
-      utm_medium: "landing-page",
-      utm_campaign: "something-happening",
-      name: false,
-      birthdate: true,
-      phone: true,
-      plan: "nord-advisor",
-      label: "Teste 2",
-      styles: {
-        container: {
-          marginTop: "10px",
-          direction: "horizontal",
+      _nord("initLeads", {
+        container: "leads",
+        utm_medium: "landing-page",
+        utm_campaign: "something-happening",
+        name: false,
+        birthdate: true,
+        phone: true,
+        plan: "nord-advisor",
+        label: "Teste 2",
+        styles: {
+          container: {
+            marginTop: "10px",
+            direction: "horizontal",
+          },
+          input: {
+            borderRadius: "20px",
+          },
+          button: {
+            borderRadius: "20px",
+          },
         },
-        input: {
-          borderRadius: "20px",
+        onSubscribe: (value) => {
+          console.log("foi", value);
         },
-        button: {
-          borderRadius: "20px",
+      });
+
+      _nord("initIndicators", {
+        container: "indicators",
+        labels: ["sep", "dolar", "bdrx", "itag", "cdi", "isee", "poup"],
+        styles: {
+          marginTop: "50px",
         },
-      },
-      onSubscribe: (value) => {
-        console.log("foi", value);
-      },
-    });
+      });
 
-    _nord('initIndicators', {
-      container: 'indicators',
-      labels: ['sep', 'dolar', 'bdrx', 'itag', 'cdi', 'isee', 'poup'],
-      styles: {
-        marginTop: '50px',
-      }
-    });
+      _nord("initEquities", {
+        container: "equities",
+        styles: {
+          marginBottom: "50px",
+        },
+      });
 
-    _nord('initEquities', {
-      container: 'equities',
-      styles: {
-        marginBottom: '50px',
-      }
-    });
-
-    _nord('infiniteSlideshow', {
-      container: 'infinite-slideshow',
-      images: [
-        'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png',
-        'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png',
-        'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png',
-        'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png',
-        'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png',
-        'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png',
-        'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png',
-      ],
-      duration: '30s',
-    });
-  </script>
-</body>
-
+      _nord("infiniteSlideshow", {
+        container: "infinite-slideshow",
+        images: [
+          "https://nord-public-assets.s3.amazonaws.com/images/home/Grid-1.png",
+          "https://nord-public-assets.s3.amazonaws.com/images/home/Grid-3.png",
+          "https://nord-public-assets.s3.amazonaws.com/images/home/Grid-2.png",
+        ],
+        duration: "150s",
+      });
+    </script>
+  </body>
 </html>
+<!--
+
+          "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png",
+          "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png",
+          "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png",
+-->
