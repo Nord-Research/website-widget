@@ -3,8 +3,9 @@ import loader from "./loader";
 import { Subscription } from "./Subscription";
 import { Ads } from "./Ads";
 import { Leads } from "./Leads";
-import Indicators from './indicators/Main'
-import Equities from './equities/Main'
+import Indicators from './indicators/Main';
+import Equities from './equities/Main';
+import Slideshow from './slideshow/Main';
 
 loader(window, {}, window.document.currentScript, (el, config, component) => {
   switch (component) {
@@ -26,6 +27,10 @@ loader(window, {}, window.document.currentScript, (el, config, component) => {
 
     case "initEquities":
       render(h(Equities, { ...config }), el);
+      break;
+
+    case "infiniteSlideshow":
+      render(h(Slideshow, { ...config }), el);
       break;
 
     default:

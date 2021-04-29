@@ -76,12 +76,17 @@ module.exports = env => {
       optimization: { minimize: !IS_DEV_BUILD },
       plugins: IS_DEV_BUILD
         ? [
-            new webpack.SourceMapDevToolPlugin(),
-            new copyWebpackPlugin({ patterns: [{ from: "dev/" }] })
-          ]
+          new webpack.SourceMapDevToolPlugin(),
+          new copyWebpackPlugin({ patterns: [{ from: "dev/" }] })
+        ]
         : [],
       resolve: {
-        extensions: ["*", ".js", ".jsx"]
+        extensions: ["*", ".js", ".jsx"],
+        alias: {
+          react: 'preact/compat',
+          'react-dom/test-utils': 'preact/test-utils',
+          'react-dom': 'preact/compat',
+        },
       }
     }
   ];
