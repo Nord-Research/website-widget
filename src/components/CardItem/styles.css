@@ -27,11 +27,16 @@ div.card-item__header {
 }
 
 div.card-item__header > .indicator {
+  cursor: pointer;
   color: #777777;
 }
 
 div.card-item__header > .price {
+  cursor: pointer;
+  margin-left: 10px;
   color: #002752;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 div.card-item__content {

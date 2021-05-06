@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 import { prop, keys, getIsMonetaryLabel } from '../utils';
 import { X_API_KEY } from '../constants/keys.contants';
 import { DEFAULT_ACCEPTED_INDICATORS } from '../constants/indicators.constants';
+import { getPercentageDecrease, getPercentageIncrease } from '../utils/price.utils';
 
 const client = axios.create();
 
@@ -34,16 +35,19 @@ const formatIndicators = (labels) => (indicators) => {
         return Boolean(indicator[label]);
       });
 
-    const recent = recentVariation[label];
     const old = oldVariation[label];
+    const recent = recentVariation[label];
+    const isDevalued = recent < old;
+    const getPercentage = isDevalued ? getPercentageDecrease : getPercentageIncrease;
 
     return {
       symbol: label,
       base: old,
       price: recent,
-      daysPercentageDiff: (recent - old) / (recent) * 100,
+      daysPercentageDiff: getPercentage(old, recent),
       isMonetary: getIsMonetaryLabel(label),
-    };
+    }
+
   });
 }
 
