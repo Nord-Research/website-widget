@@ -9,30 +9,28 @@ import { numberToBRL } from '../../utils';
 
 import './styles.css';
 
-const Indicator = ({ diff = 0 }) => {
-  const isPositive = diff > 0;
-
-  return (
-    <p className={`indicator ${isPositive ? 'positive' : 'negative'}`}>
-      {isPositive ? (
-        <ArrowUp />
-      ) : (
-        <ArrowDown />
-      )}
-      {diff.toFixed(2)}%
-    </p>
-  )
-};
+const Indicator = ({ isPositive, diff }) => (
+  <p className={`indicator ${isPositive ? 'positive' : 'negative'}`}>
+    {isPositive ? (
+      <ArrowUp />
+    ) : (
+      <ArrowDown />
+    )}
+    {diff.toFixed(2)}%
+  </p>
+);
 
 export const CardItem = ({
   symbol = '',
   price = 0,
   base = 0,
-  daysPercentageDiff,
+  daysPercentageDiff = 0,
   isMonetary = false,
   isLoading = false,
 }) => {
   const points = price / 100;
+  const isPositive = price >= base;
+  const formattedPrice = isMonetary ? numberToBRL(points) : points;
 
   return (
     <div className="card-item-container">
@@ -40,10 +38,10 @@ export const CardItem = ({
         <div className="card-item">
           <div className="card-item__header">
             <div className="indicator">{getSymbolFromDictionary(symbol)}</div>
-            <div className="price">{isMonetary ? numberToBRL(points) : points}</div>
+            <div className="price" title={formattedPrice}>{formattedPrice}</div>
           </div>
           <div className="card-item__content">
-            <Indicator diff={daysPercentageDiff} />
+            <Indicator isPositive={isPositive} diff={daysPercentageDiff} />
           </div>
         </div>
       )}

@@ -1,15 +1,34 @@
 import { useEffect, useMemo, useState } from "preact/hooks";
 import { getEquities } from '../../services/equities.service';
+import { getPercentageDecrease, getPercentageIncrease } from '../../utils/price.utils';
+
+const getIncrease = (equitie) => ({
+  ...equitie,
+  daysPercentageDiff: getPercentageIncrease(equitie.base, equitie.price),
+});
+
+const getDecrease = (equitie) => ({
+  ...equitie,
+  daysPercentageDiff: getPercentageDecrease(equitie.base, equitie.price),
+});
 
 const sortByDaysPercentageDiff = (a, b) => b.daysPercentageDiff - a.daysPercentageDiff;
 
-const isValued = equitie => equitie.price - equitie.base >= 0 ? true : false;
+const isValued = equitie => Boolean(equitie.price >= equitie.base);
 
-const isDevalued = equitie => equitie.price - equitie.base < 0 ? true : false;
+const isDevalued = equitie => Boolean(equitie.price < equitie.base);
 
-const getHighestHighs = equities => equities.filter(isValued).sort(sortByDaysPercentageDiff).slice(0, 4);
+const getHighestHighs = equities => equities
+  .filter(isValued)
+  .map(getIncrease)
+  .sort(sortByDaysPercentageDiff)
+  .slice(0, 4);
 
-const getBiggestLosses = equities => equities.filter(isDevalued).sort(sortByDaysPercentageDiff).reverse().slice(0, 4);
+const getBiggestLosses = equities => equities
+  .filter(isDevalued)
+  .map(getDecrease)
+  .sort(sortByDaysPercentageDiff)
+  .slice(0, 4);
 
 export const useEquities = () => {
   const [equities, setEquities] = useState({});
