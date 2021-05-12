@@ -40,8 +40,8 @@ export const useEquities = () => {
       setIsLoading(true);
 
       try {
+        const composition = await getIndexComposition({ id: 'IBOV' });
         const equities = await getEquities();
-        const composition = await getIndexComposition();
 
         const highs = getHighestHighs(equities);
         const losses = getBiggestLosses(equities);

@@ -10,7 +10,7 @@ const formatEquitiesWithPercentageDiff = equities => equities.map(equitie => ({
   isMonetary: true,
 }));
 
-export const getIndexComposition = ({ id = '', from = '2021-04-01', to = '2021-05-01' } = {}) => client.get(
+export const getIndexComposition = ({ id = '', from = '2021-05-11', to = '2021-05-12' } = {}) => client.get(
   `https://api.abalustre.com/historical/index-composition/${id}`,
   {
     headers: {

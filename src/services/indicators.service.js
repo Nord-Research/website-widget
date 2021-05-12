@@ -57,7 +57,7 @@ export const getIndicators = (labels = DEFAULT_ACCEPTED_INDICATORS) => client.ge
     headers: {
       authorization: `Bearer ${BEARER}`,
       'x-api-key': X_API_KEY,
-    }
+    },
   })
   .then(prop('data'))
   .then(prop('data'))
