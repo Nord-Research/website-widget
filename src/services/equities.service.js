@@ -1,16 +1,19 @@
 import axios from "axios";
 
+import { getToday, getYesterday } from '../services/date.service';
 import { prop, values } from '../utils';
 import { X_API_KEY } from '../constants/keys.contants';
 
 const client = axios.create();
+const today = getToday()
+const yesterday = getYesterday();
 
 const formatEquitiesWithPercentageDiff = equities => equities.map(equitie => ({
   ...equitie,
   isMonetary: true,
 }));
 
-export const getIndexComposition = ({ id = '', from = '2021-05-11', to = '2021-05-12' } = {}) => client.get(
+export const getIndexComposition = ({ id = '', from = yesterday, to = today } = {}) => client.get(
   `https://api.abalustre.com/historical/index-composition/${id}`,
   {
     headers: {
@@ -23,14 +26,15 @@ export const getIndexComposition = ({ id = '', from = '2021-05-11', to = '2021-0
   })
   .then(prop('data'))
 
-export const getEquities = () => client.get(
+export const getEquities = (symbols = []) => client.get(
   'https://iafyojiy49.execute-api.us-east-1.amazonaws.com/prod/highlight',
   {
     params: {
       range: 1,
       period: 'day',
       absolute: true,
-      onlyCompanies: true
+      onlyCompanies: true,
+      symbols: symbols.length ? symbols.join(',') : '',
     },
     headers: {
       'x-api-key': X_API_KEY,
