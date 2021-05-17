@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "preact/hooks";
-import { getEquities } from '../../services/equities.service';
+import { getEquities, getIndexComposition } from '../../services/equities.service';
 import { getPercentageDecrease, getPercentageIncrease } from '../../utils/price.utils';
 
 const getIncrease = (equitie) => ({
@@ -40,7 +40,9 @@ export const useEquities = () => {
       setIsLoading(true);
 
       try {
-        const equities = await getEquities();
+        const { data: compositions } = await getIndexComposition({ id: 'IBOV' });
+        const symbols = compositions.map(composition => composition.symbol);
+        const equities = await getEquities(symbols);
         const highs = getHighestHighs(equities);
         const losses = getBiggestLosses(equities);
 

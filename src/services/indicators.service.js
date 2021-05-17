@@ -1,23 +1,16 @@
 import axios from "axios";
-import dayjs from 'dayjs';
 
+import { getTodayAndPastDay } from '../services/date.service';
 import { prop, keys, getIsMonetaryLabel } from '../utils';
+import { getPercentageDecrease, getPercentageIncrease } from '../utils/price.utils';
 import { X_API_KEY } from '../constants/keys.contants';
 import { DEFAULT_ACCEPTED_INDICATORS } from '../constants/indicators.constants';
-import { getPercentageDecrease, getPercentageIncrease } from '../utils/price.utils';
 
 const client = axios.create();
 
-const DAYS_TO_GET = 14;
-const DATE_FORMAT = 'YYYY-MM-DD'
+const PAST_DAYS = 14;
 
-const curretDate = new Date();
-
-const todayFormattedDate = dayjs(curretDate).format(DATE_FORMAT);
-const yesterdayFormattedDate =
-  dayjs(curretDate
-    .setDate(curretDate.getDate() - DAYS_TO_GET))
-    .format(DATE_FORMAT);
+const { today, pastDay } = getTodayAndPastDay(PAST_DAYS);
 
 const BEARER = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzQsImVtYWlsIjoibWFpY29ucnM5NUBnbWFpbC5jb20iLCJpYXQiOjE2MTc3NDk1NDh9.e9RROS3BowFuNrLvzVhddnseJ5MmD0Wz2VrA1pLG59o';
 
@@ -52,12 +45,12 @@ const formatIndicators = (labels) => (indicators) => {
 }
 
 export const getIndicators = (labels = DEFAULT_ACCEPTED_INDICATORS) => client.get(
-  `https://api.abalustre.com/historical/indicators?from=${yesterdayFormattedDate}&to=${todayFormattedDate}`,
+  `https://api.abalustre.com/historical/indicators?from=${pastDay}&to=${today}`,
   {
     headers: {
       authorization: `Bearer ${BEARER}`,
       'x-api-key': X_API_KEY,
-    }
+    },
   })
   .then(prop('data'))
   .then(prop('data'))
