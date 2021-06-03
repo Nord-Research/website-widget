@@ -10,5 +10,9 @@
     padding-bottom: 10px;
     background-color: var(--dark-blue);
     color: var(--white);
+
+    font-size: 22px;
+    line-height: 33px;
+    color: var(--white);
   }
 }

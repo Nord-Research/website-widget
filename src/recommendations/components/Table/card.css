@@ -45,6 +45,8 @@
   }
 
   .card .recommendation {
+    display: flex;
+    justify-content: flex-end;
     grid-area: recommendation;
   }
 
