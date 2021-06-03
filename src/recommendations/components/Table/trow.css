@@ -1,4 +1,6 @@
 .trow {
+  background-color: var(--white);
+  border-radius: 10px;
   display: grid;
   grid-auto-flow: row;
 }

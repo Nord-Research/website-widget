@@ -3,7 +3,7 @@ import { h } from "preact";
 import Recommendation from '../Recommendation';
 import Variation from '../Variation';
 
-import { HEAD_AREAS,HEAD_LABELS } from '../../constants/table';
+import { HEAD_AREAS, HEAD_LABELS } from '../../constants/table';
 
 import './styles.css';
 import './thead.css';
@@ -21,7 +21,8 @@ const MOCKED_ROWS = [
     currentPrice: 'R$ 25,35',
     maxPrice: 'R$ 30,00',
     recommendation: 'Comprar',
-    alocation: '9,4%'
+    alocation: '9,4%',
+    status: 'positive'
   },
   {
     order: 2,
@@ -31,7 +32,8 @@ const MOCKED_ROWS = [
     currentPrice: 'R$ 25,35',
     maxPrice: 'R$ 30,00',
     recommendation: 'Comprar',
-    alocation: '9,4%'
+    alocation: '9,4%',
+    status: 'negative'
   },
   {
     order: 3,
@@ -67,7 +69,7 @@ export const Table = ({ }) => (
             </span>
             <span className="variation row-item">
               <p className="card-title">{HEAD_LABELS[HEAD_AREAS.VARIATION]}</p>
-              <Variation value={item.variation} />
+              <Variation value={item.variation} status={item.status} />
             </span>
             <span className="current-price row-item">
               <p className="card-title">{HEAD_LABELS[HEAD_AREAS.CURRENT_PRICE]}</p>

@@ -4,6 +4,7 @@
 
 @media (min-width: 1024px) {
   .thead {
+    border-radius: 8px 8px 0 0;
     grid-area: thead;
     display: initial;
     padding-top: 10px;
