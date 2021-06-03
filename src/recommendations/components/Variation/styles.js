@@ -1,6 +1,13 @@
 import styled, { css } from 'styled-components';
 
+export const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const Label = styled.p`
+  display: inline-block;
   font-style: normal;
   font-weight: bold;
   font-size: 14px;
