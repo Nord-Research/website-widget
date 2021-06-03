@@ -5,6 +5,8 @@ import Variation from '../Variation';
 
 import { HEAD_AREAS, HEAD_LABELS } from '../../constants/table';
 
+import logo from '../../../assets/images/locameria.svg';
+
 import './styles.css';
 import './thead.css';
 import './tbody.css';
@@ -15,7 +17,7 @@ import './text.css';
 const MOCKED_ROWS = [
   {
     order: 1,
-    logo: 'Logo',
+    logo: '',
     ticker: 'LCAM3',
     variation: '1,5%',
     currentPrice: 'R$ 25,35',
@@ -26,7 +28,7 @@ const MOCKED_ROWS = [
   },
   {
     order: 2,
-    logo: 'Logo',
+    logo: '',
     ticker: 'LCAM3',
     variation: '1,5%',
     currentPrice: 'R$ 25,35',
@@ -37,7 +39,7 @@ const MOCKED_ROWS = [
   },
   {
     order: 3,
-    logo: 'Logo',
+    logo: '',
     ticker: 'LCAM3',
     variation: '1,5%',
     currentPrice: 'R$ 25,35',
@@ -62,7 +64,9 @@ export const Table = ({ }) => (
         <div className="trow">
           <span className="order">#{item.order}</span>
           <div className="tcolumns card">
-            <span className="logo">{item.logo}</span>
+            <span className="logo">
+              <img src={logo} alt="logo" />
+            </span>
             <span className="ticker row-item">
               <p className="card-title">{HEAD_LABELS[HEAD_AREAS.TICKER]}</p>
               <p className="ticker-text">{item.ticker}</p>

@@ -9,10 +9,10 @@ const getArrowByStatus = (status) => status === 'positive' ? arrowUp : arrowDown
 export const Variation = ({ value, status }) => (
   <S.Container>
     {status && (
-      <img src={getArrowByStatus(status)} alt="arrow" width={40} height={40} />
+      <img src={getArrowByStatus(status)} alt="arrow" />
     )}
     <S.Label status={status}>{value}</S.Label>
   </S.Container>
-)
+);
 
 export default Variation;

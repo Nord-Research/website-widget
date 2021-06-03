@@ -4,6 +4,18 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media (min-width: 1024px) {
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
 `;
 
 export const Label = styled.p`
