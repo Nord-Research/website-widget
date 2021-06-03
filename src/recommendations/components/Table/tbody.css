@@ -1,0 +1,13 @@
+.tbody {
+  gap: 10px;
+  display: grid;
+  grid-area: tbody;
+  /* overflow-x: auto; */
+  grid-auto-flow: column;
+}
+
+@media (min-width: 1024px) {
+  .tbody {
+    grid-auto-flow: initial;
+  }
+}

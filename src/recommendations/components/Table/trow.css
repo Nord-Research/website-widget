@@ -1,0 +1,43 @@
+.trow {
+  display: grid;
+  grid-auto-flow: row;
+}
+
+.trow .order {
+  font-size: 17px;
+  line-height: 25px;
+  font-weight: bold;
+  color: var(--white);
+  background-color: var(--dark-blue);
+}
+
+
+@media (max-width: 1023px) {
+  .trow .order {
+    text-align: center;
+    padding: 2px 0;
+    width: 95%;
+    margin: 0 auto;
+    border-radius: 10px 10px 0px 0px;
+  }
+
+}
+
+@media (min-width: 1024px) {
+  .trow {
+    grid-row-gap: 50px;
+    display: grid;
+    grid-template-columns: 67px auto;
+  }
+
+  .trow .order {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 67px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: normal;
+    border-radius: 10px 0px 0px 10px;
+  }
+}

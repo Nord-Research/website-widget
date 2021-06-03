@@ -8,7 +8,7 @@
     display: initial;
     padding-top: 10px;
     padding-bottom: 10px;
-    background-color: #04063A;
-    color: #fff;
+    background-color: var(--dark-blue);
+    color: var(--white);
   }
 }
