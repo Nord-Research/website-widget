@@ -1,0 +1,14 @@
+.thead {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .thead {
+    grid-area: thead;
+    display: initial;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #04063A;
+    color: #fff;
+  }
+}
