@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Label = styled.p`
+  text-transform: uppercase;
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
-  color: var(--green);
 
   &:before {
     margin-right: 10px;
@@ -14,6 +14,36 @@ export const Label = styled.p`
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: var(--green);
   }
+
+  @media (min-width: 1024px) {
+    font-size: 19px;
+    line-height: 28px;
+  }
+
+  ${({ status }) => {
+    switch (status) {
+      case 'buy':
+        return css`
+          color: var(--green);
+          &::before {
+            background: var(--green);
+          }
+        `;
+      case 'keep':
+        return css`
+          color: var(--yellow);
+          &::before {
+            background: var(--yellow);
+          }
+        `;
+      default:
+        return css`
+          color: var(--light-black);
+          &::before {
+            background: var(--light-black);
+          }
+      `;
+    }
+  }}
 `;

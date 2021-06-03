@@ -24,9 +24,10 @@ const MOCKED_ROWS = [
     variation: '1,5%',
     currentPrice: 'R$ 25,35',
     maxPrice: 'R$ 30,00',
-    recommendation: 'Comprar',
+    recommendation: 'buy',
     alocation: '9,4%',
-    status: 'positive'
+    status: 'positive',
+    recommendation: 'buy',
   },
   {
     order: 2,
@@ -35,9 +36,9 @@ const MOCKED_ROWS = [
     variation: '1,5%',
     currentPrice: 'R$ 25,35',
     maxPrice: 'R$ 30,00',
-    recommendation: 'Comprar',
+    recommendation: 'keep',
     alocation: '9,4%',
-    status: 'negative'
+    status: 'negative',
   },
   {
     order: 3,
@@ -88,7 +89,7 @@ export const Table = ({ }) => (
                 <p className="max-price-text">{item.maxPrice}</p>
               </span>
               <span className="recommendation">
-                <Recommendation label={item.recommendation} />
+                <Recommendation label={item.recommendation} status={item.recommendation} />
               </span>
               <span className="alocation row-item">
                 <p className="card-title">{HEAD_LABELS[HEAD_AREAS.ALOCATION]}</p>
