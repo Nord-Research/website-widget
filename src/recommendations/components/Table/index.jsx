@@ -13,11 +13,11 @@ import './card.css';
 import './text.css';
 
 export const Table = ({ }) => {
-  const { data } = useGetRecommendations();
+  const { data, wallet, setWallet } = useGetRecommendations();
 
   return (
     <div>
-      <Wallets />
+      <Wallets wallet={wallet} setWallet={setWallet} />
 
       <div className="container">
         <div className="thead">

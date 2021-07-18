@@ -38,7 +38,7 @@ const MOCKED_ROWS = [
 ];
 
 export const useGetRecommendations = () => {
-  const [filter, setFilter] = useState('small-caps');
+  const [wallet, setWallet] = useState('small-caps');
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -51,13 +51,13 @@ export const useGetRecommendations = () => {
   }, []);
 
   useEffect(() => {
-    getRecommendations(filter)
-  }, [filter]);
+    getRecommendations(wallet)
+  }, [wallet]);
 
   return {
     isLoading,
-    filter,
-    setFilter,
+    wallet,
+    setWallet,
     data
   }
 };
