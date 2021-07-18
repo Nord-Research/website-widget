@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
@@ -24,4 +24,9 @@ export const Wallet = styled.span`
   &:not(:last-child) {
     margin-right: 10px;
   }
+
+  ${({ isActive }) => isActive && css`
+    color: var(--white);
+    background-color: #0378A6;
+  `}
 `;
