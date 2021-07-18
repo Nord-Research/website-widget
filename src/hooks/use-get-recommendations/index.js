@@ -1,6 +1,42 @@
 import { useEffect, useState, useCallback } from 'preact/hooks';
 import { getRecommendations as getData } from '../../services/recommendations.service';
 
+const MOCKED_ROWS = [
+  {
+    order: 1,
+    logo: '',
+    ticker: 'LCAM3',
+    variation: '1,5%',
+    currentPrice: 'R$ 25,35',
+    maxPrice: 'R$ 30,00',
+    recommendation: 'buy',
+    alocation: '9,4%',
+    status: 'positive',
+    recommendation: 'buy',
+  },
+  {
+    order: 2,
+    logo: '',
+    ticker: 'LCAM3',
+    variation: '1,5%',
+    currentPrice: 'R$ 25,35',
+    maxPrice: 'R$ 30,00',
+    recommendation: 'keep',
+    alocation: '9,4%',
+    status: 'negative',
+  },
+  {
+    order: 3,
+    logo: '',
+    ticker: 'LCAM3',
+    variation: '1,5%',
+    currentPrice: 'R$ 25,35',
+    maxPrice: 'R$ 30,00',
+    recommendation: 'Comprar',
+    alocation: '9,4%'
+  },
+];
+
 export const useGetRecommendations = () => {
   const [filter, setFilter] = useState('small-caps');
   const [data, setData] = useState([]);
@@ -8,7 +44,10 @@ export const useGetRecommendations = () => {
 
   const getRecommendations = useCallback((label) => {
     setIsLoading(true);
-    getData(label).finally(() => setIsLoading(false));
+    getData(label)
+      .catch(() => Promise.resolve(MOCKED_ROWS))
+      .then((response) => setData(response))
+      .finally(() => setIsLoading(false));
   }, []);
 
   useEffect(() => {
