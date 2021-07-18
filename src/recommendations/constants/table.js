@@ -6,7 +6,7 @@ export const HEAD_AREAS = {
   MAX_PRICE: 'max-price',
   RECOMMENDATION: 'recommendation',
   ALOCATION: 'alocation',
-}
+};
 
 export const HEAD_LABELS = {
   [HEAD_AREAS.LOGO]: 'Empresa',
