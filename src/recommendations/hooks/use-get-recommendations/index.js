@@ -37,8 +37,8 @@ const MOCKED_ROWS = [
   },
 ];
 
-export const useGetRecommendations = () => {
-  const [wallet, setWallet] = useState('small-caps');
+export const useGetRecommendations = ({ plans }) => {
+  const [wallet, setWallet] = useState(null);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -50,8 +50,15 @@ export const useGetRecommendations = () => {
       .finally(() => setIsLoading(false));
   }, []);
 
+
   useEffect(() => {
-    getRecommendations(wallet)
+    if (plans && plans.length) {
+      setWallet(plans[0]?.id);
+    }
+  }, [plans]);
+
+  useEffect(() => {
+    if (wallet) getRecommendations(wallet)
   }, [wallet]);
 
   return {

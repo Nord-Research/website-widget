@@ -2,9 +2,9 @@ import { h } from "preact";
 
 import { HEAD_LABELS } from '../../constants/table';
 
-import Wallets from '../Wallets';
+import Plans from '../Plans';
 import TRow from '../TRow';
-import { useGetRecommendations } from '../../hooks';
+import { useGetRecommendations, useGetPlans } from '../../hooks';
 
 import './styles.css';
 import './thead.css';
@@ -13,11 +13,12 @@ import './card.css';
 import './text.css';
 
 export const Table = ({ }) => {
-  const { data, wallet, setWallet } = useGetRecommendations();
+  const { plans } = useGetPlans();
+  const { data, wallet, setWallet } = useGetRecommendations({ plans });
 
   return (
     <div>
-      <Wallets wallet={wallet} setWallet={setWallet} />
+      <Plans plans={plans} wallet={wallet} setWallet={setWallet} />
 
       <div className="container">
         <div className="thead">
