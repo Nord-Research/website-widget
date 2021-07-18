@@ -1,5 +1,5 @@
-import axios from "axios";
+import { nordAPI } from './api';
 
-const client = axios.create();
+export const getPlans = () => nordAPI.get('/plans').then(({ data }) => data);
 
-export const getRecommendations = async (filter) => client.get(`/mocked/url/${filter}`);
+export const getRecommendations = async (filter) => nordAPI.get(`/mocked/url/${filter}`);
