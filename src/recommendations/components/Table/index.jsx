@@ -4,7 +4,7 @@ import { HEAD_LABELS } from '../../constants/table';
 
 import Wallets from '../Wallets';
 import TRow from '../TRow';
-import useGetRecommendations from '../../../hooks/use-get-recommendations';
+import { useGetRecommendations } from '../../hooks';
 
 import './styles.css';
 import './thead.css';

@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'preact/hooks';
-import { getRecommendations as getData } from '../../services/recommendations.service';
+import { getRecommendations as getData } from '../../../services/recommendations.service';
 
 const MOCKED_ROWS = [
   {
