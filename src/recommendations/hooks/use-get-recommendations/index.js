@@ -13,7 +13,8 @@ const parseRecommendations = (recommendations = []) =>
 export const useGetRecommendations = ({ plans }) => {
   const [wallet, setWallet] = useState(null);
   const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const isEmpty = data.length <= 0;
 
   const getRecommendations = useCallback((label) => {
     setIsLoading(true);
@@ -37,7 +38,8 @@ export const useGetRecommendations = ({ plans }) => {
     isLoading,
     wallet,
     setWallet,
-    data
+    data,
+    isEmpty,
   }
 };
 

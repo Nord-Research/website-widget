@@ -3,7 +3,7 @@ import { getPlans } from '../../../services';
 
 export const useGetPlans = () => {
   const [plans, setPlans] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     (() => {
@@ -12,7 +12,7 @@ export const useGetPlans = () => {
         .then(({ data }) => {
           setPlans(data);
         })
-        .finally(() => setIsLoading(true));
+        .finally(() => setIsLoading(false));
     })();
   }, []);
 

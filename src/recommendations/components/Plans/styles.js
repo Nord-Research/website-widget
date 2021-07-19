@@ -32,3 +32,9 @@ export const Wallet = styled.div`
     background-color: #0378A6;
   `}
 `;
+
+export const LoadingWallet = styled.div`
+  &:not(:last-child) {
+    margin-right: 10px;
+  }
+`;

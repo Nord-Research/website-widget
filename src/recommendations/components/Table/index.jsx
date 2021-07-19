@@ -1,4 +1,5 @@
 import { h } from "preact";
+import Skeleton from 'preact-loading-skeleton';
 
 import { HEAD_LABELS } from '../../constants/table';
 
@@ -12,13 +13,18 @@ import './tbody.css';
 import './card.css';
 import './text.css';
 
+const Empty = () => (
+  <p style={{ textAlign: 'center', padding: '100px', fontSize: '28px' }}>Não há dados para mostrar.</p>
+);
+
 export const Table = ({ }) => {
-  const { plans } = useGetPlans();
-  const { data, wallet, setWallet } = useGetRecommendations({ plans });
+  const { plans, isLoading: isLoadingPlans } = useGetPlans();
+  const { isEmpty, data, wallet, setWallet, isLoading: isLoadingRecommendations } = useGetRecommendations({ plans });
+  const isLoadingTable = isLoadingPlans || isLoadingRecommendations;
 
   return (
     <div>
-      <Plans plans={plans} wallet={wallet} setWallet={setWallet} />
+      <Plans plans={plans} wallet={wallet} setWallet={setWallet} isLoading={isLoadingPlans} />
 
       <div className="container">
         <div className="thead">
@@ -30,7 +36,11 @@ export const Table = ({ }) => {
         </div>
 
         <div className="tbody">
-          {data.map((item) => <TRow item={item} />)}
+          {isLoadingTable ?
+            <Skeleton height={200} /> :
+            isEmpty ? <Empty /> :
+              data.map(item => <TRow item={item} />)
+          }
         </div>
       </div>
     </div>
