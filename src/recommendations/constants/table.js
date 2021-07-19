@@ -17,3 +17,8 @@ export const HEAD_LABELS = {
   [HEAD_AREAS.RECOMMENDATION]: 'Recomendação',
   [HEAD_AREAS.ALOCATION]: 'Alocação',
 };
+
+export const RECOMMENDATION_LABEL = {
+  'buy': 'Comprar',
+  'hold': 'Manter',
+};

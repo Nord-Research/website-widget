@@ -30,7 +30,7 @@ export const Label = styled.p`
             background: var(--green);
           }
         `;
-      case 'keep':
+      case 'hold':
         return css`
           color: var(--yellow);
           &::before {

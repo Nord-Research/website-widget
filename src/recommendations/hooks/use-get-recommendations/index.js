@@ -1,41 +1,14 @@
 import { useEffect, useState, useCallback } from 'preact/hooks';
 import { getRecommendations as getData } from '../../../services/recommendations.service';
+import { floatToBRL } from '../../../parsers/monetary';
 
-const MOCKED_ROWS = [
-  {
-    order: 1,
-    logo: '',
-    ticker: 'LCAM3',
-    variation: '1,5%',
-    currentPrice: 'R$ 25,35',
-    maxPrice: 'R$ 30,00',
-    recommendation: 'buy',
-    alocation: '9,4%',
-    status: 'positive',
-    recommendation: 'buy',
-  },
-  {
-    order: 2,
-    logo: '',
-    ticker: 'LCAM3',
-    variation: '1,5%',
-    currentPrice: 'R$ 25,35',
-    maxPrice: 'R$ 30,00',
-    recommendation: 'keep',
-    alocation: '9,4%',
-    status: 'negative',
-  },
-  {
-    order: 3,
-    logo: '',
-    ticker: 'LCAM3',
-    variation: '1,5%',
-    currentPrice: 'R$ 25,35',
-    maxPrice: 'R$ 30,00',
-    recommendation: 'Comprar',
-    alocation: '9,4%'
-  },
-];
+const parseRecommendations = (recommendations = []) =>
+  recommendations.map(recommendation => ({
+    ...recommendation,
+    share: recommendation.share / 100,
+    maxPriceBRL: floatToBRL(recommendation.max_price / 100),
+    startPriceBRL: floatToBRL(recommendation.start_price / 100),
+  }));
 
 export const useGetRecommendations = ({ plans }) => {
   const [wallet, setWallet] = useState(null);
@@ -45,8 +18,7 @@ export const useGetRecommendations = ({ plans }) => {
   const getRecommendations = useCallback((label) => {
     setIsLoading(true);
     getData(label)
-      .catch(() => Promise.resolve(MOCKED_ROWS))
-      .then(({ data }) => setData(data))
+      .then(({ data }) => setData(parseRecommendations(data)))
       .finally(() => setIsLoading(false));
   }, []);
 
