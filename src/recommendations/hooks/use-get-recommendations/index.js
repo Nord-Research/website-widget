@@ -46,7 +46,7 @@ export const useGetRecommendations = ({ plans }) => {
     setIsLoading(true);
     getData(label)
       .catch(() => Promise.resolve(MOCKED_ROWS))
-      .then((response) => setData(response))
+      .then(({ data }) => setData(data))
       .finally(() => setIsLoading(false));
   }, []);
 
