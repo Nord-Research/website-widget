@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --light-gray: #F3F3F3;
+  --gray: #3B4351;
+  --light-black: #494949;
+  --white: #fff;
+  --dark-blue: #04063A;
+  --green: #14A38B;
+  --yellow: #F2AC57;
+  --red: #FF7171;
+}
+
+@media (min-width: 1024px) {
+  .tcolumns {
+    display: grid;
+    text-align: center;
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  .tcolumns > span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.container {
+  display: grid;
+  grid-template-areas:
+      '.        thead'
+      'tbody    tbody';
+
+  grid-auto-flow: row;
+  grid-template-columns: 67px auto;
+}

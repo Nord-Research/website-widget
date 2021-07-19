@@ -1,0 +1,19 @@
+.thead {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .thead {
+    border-radius: 8px 8px 0 0;
+    grid-area: thead;
+    display: initial;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: var(--dark-blue);
+    color: var(--white);
+
+    font-size: 22px;
+    line-height: 33px;
+    color: var(--white);
+  }
+}

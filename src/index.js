@@ -6,6 +6,7 @@ import { Leads } from "./Leads";
 import Indicators from './indicators/Main';
 import Equities from './equities/Main';
 import Slideshow from './slideshow/Main';
+import Recommendations from './recommendations';
 
 loader(window, {}, window.document.currentScript, (el, config, component) => {
   switch (component) {
@@ -31,6 +32,10 @@ loader(window, {}, window.document.currentScript, (el, config, component) => {
 
     case "infiniteSlideshow":
       render(h(Slideshow, { ...config }), el);
+      break;
+
+    case "initRecommendations":
+      render(h(Recommendations, { ...config }), el);
       break;
 
     default:
