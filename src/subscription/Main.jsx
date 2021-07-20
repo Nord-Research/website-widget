@@ -43,6 +43,7 @@ const Main = () => {
           ...fields,
           Nome: fields.Email,
           BoasVindasIdentificador: config.welcomeIdentifier,
+          "CORS": "alt",
         },
         { arrayFormat: "index" }
       );
